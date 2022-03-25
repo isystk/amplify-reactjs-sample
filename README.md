@@ -4,36 +4,22 @@
 https://qiita.com/t_okkan/items/38aca98993bf06598af6
 
 
-#### amplify コマンドをインストールする
-```text
+## amplify の利用方法
+```shell
+# amplify コマンドをインストールする
 $ npm install -g @aws-amplify/cli
 $ amplify -v
 4.16.1
+
+# amplify を利用する為の設定
 $ amplify configure
-Follow these steps to set up access to your AWS account:
-
-Sign in to your AWS administrator account:
-https://console.aws.amazon.com/
-Press Enter to continue
-
-Specify the AWS Region
-? region:  ap-northeast-1
-Specify the username of the new IAM user:
 ? user name:  amplify-lBpzV
-Complete the user creation using the AWS console
-https://console.aws.amazon.com/iam/home?region=ap-northeast-1#/users$new?step=final&accessKey&userNames=amplify-lBpzV&permissionType=policies&policies=arn:aws:iam::aws:policy%2FAdministratorAccess-Amplify
-Press Enter to continue
 
-Enter the access key of the newly created user:
-? accessKeyId:  ********************
-? secretAccessKey:  ****************************************
-This would update/create the AWS Profile in your local machine
-? Profile Name:  default
-```
-
-#### amplify で作業を開始する
-```text
+# AWS から amplify の状態をローカルに取り込む
 $ amplify pull --appId d28qg1769uc44q --envName dev
+
+# ローカル の状態を AWS の amplify へ反映する
+$ amplify push
 ```
 
 #### AWS にamplifyの環境を構築する
@@ -56,21 +42,8 @@ Using default provider  awscloudformation
   AWS access keys (node:42574) [DEP0128] DeprecationWarning: Invalid 'main' field in '/Users/iseyoshitaka/.nodebrew/node/v16.13.1/lib/node_modules/@aws-amplify/cli/node_modules/cloudform/package.json' of 'packages/cloudform/index.js
 ? Select the authentication method you want to use: AWS profile
 
-# 認証機能を追加する
-$ amplify add auth
-Do you want to use the default authentication and security configuration? Default configuration
-Warning: you will not be able to edit these selections. 
-How do you want users to be able to sign in? Email
-Do you want to configure advanced settings? No, I am done.
-Successfully added auth resource amplifyreactjssample0336150d locally
-
-# AWSに反映する
-$ amplify push
-┌──────────┬──────────────────────────────┬───────────┬───────────────────┐
-│ Category │ Resource name                │ Operation │ Provider plugin   │
-├──────────┼──────────────────────────────┼───────────┼───────────────────┤
-│ Auth     │ amplifyreactjssample0336150d │ Create    │ awscloudformation │
-└──────────┴──────────────────────────────┴───────────┴───────────────────┘
+# init で作成した環境を AWS から一括で削除したい場合
+$ amplify delete
 ```
 
 #### 

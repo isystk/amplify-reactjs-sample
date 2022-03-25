@@ -36,5 +36,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@aws-amplify/api": "^4.0.35",
+    "@aws-amplify/pubsub": "^4.2.11",
+    "@aws-amplify/ui-react": "^2.11.0"
   }
 }
