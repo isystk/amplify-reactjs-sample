@@ -42,8 +42,21 @@
   },
   "devDependencies": {
     "@aws-amplify/api": "^4.0.35",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@reduxjs/toolkit": "^1.8.0",
+    "@types/lodash": "^4.14.180",
+    "@types/material-ui": "^0.21.12",
     "aws-amplify": "^4.3.17",
     "aws-amplify-react": "^5.1.9",
+    "lodash": "^4.17.21",
+    "material-ui": "^0.20.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "sass": "^1.49.9"
   }
 }
