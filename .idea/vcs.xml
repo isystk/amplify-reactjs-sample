@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/amplify-nextjs-sample" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kubernetes-sample" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nextjs-typescript-aws" vcs="Git" />
   </component>
 </project>
