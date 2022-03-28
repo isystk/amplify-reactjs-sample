@@ -2,11 +2,13 @@ import React, {useEffect, useReducer, useState} from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { withAuthenticator } from 'aws-amplify-react'
-import { createPost } from './graphql/mutations';
-import { listPosts } from './graphql/queries';
-import { onCreatePost } from './graphql/subscriptions';
+import { createPost } from '../graphql/mutations';
+import { listPosts } from '../graphql/queries';
+import { onCreatePost } from '../graphql/subscriptions';
 
-import awsconfig from './aws-exports';
+import awsconfig from '../aws-exports';
+
+import Layout from "./Layout";
 
 Amplify.configure(awsconfig);
 
@@ -108,39 +110,41 @@ function App() {
 
   // @ts-ignore
   return (
-      <div className="App">
-        <p>user: {user!= null && user.username}</p>
-        <button onClick={signOut}>Sign out</button>
-        <div>
-          <table >
-            <tr>
-              <th>No</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>UserID</th>
-              <th></th>
-            </tr>
-            <tr>
-              <td></td>
-              <td><input id='title' type='text' onChange={onChange} value={title}/></td>
-              <td><input id='description' type='text' onChange={onChange} value={description}/></td>
-              <td><input id='userID' type='text' onChange={onChange} value={userID}/></td>
-              <th><button onClick={create}>New</button></th>
-            </tr>
-            {state.posts && state.posts.map((post: Post, index: number) => {
-              return(
-                  <tr key={post.id}>
-                    <td>{index + 1}</td>
-                    <td>{post.title}</td>
-                    <td>{post.description}</td>
-                    <td>{post.userID}</td>
-                    <td>{post.createdAt}</td>
-                  </tr>
-              )
-            })}
-          </table>
+      <Layout>
+        <div className="App">
+          <p>user: {user!= null && user.username}</p>
+          <button onClick={signOut}>Sign out</button>
+          <div>
+            <table >
+              <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>UserID</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input id='title' type='text' onChange={onChange} value={title}/></td>
+                <td><input id='description' type='text' onChange={onChange} value={description}/></td>
+                <td><input id='userID' type='text' onChange={onChange} value={userID}/></td>
+                <th><button onClick={create}>New</button></th>
+              </tr>
+              {state.posts && state.posts.map((post: Post, index: number) => {
+                return(
+                    <tr key={post.id}>
+                      <td>{index + 1}</td>
+                      <td>{post.title}</td>
+                      <td>{post.description}</td>
+                      <td>{post.userID}</td>
+                      <td>{post.createdAt}</td>
+                    </tr>
+                )
+              })}
+            </table>
+          </div>
         </div>
-      </div>
+      </Layout>
   );
 }
 
