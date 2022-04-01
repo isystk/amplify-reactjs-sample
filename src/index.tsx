@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/app.scss';
-import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 import { createStore, applyMiddleware } from 'redux'
@@ -12,6 +11,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import reducers from './store/Store'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import App from "./components/App";
 
 // 開発環境の場合は、redux-devtools-extension を利用できるようにする
 const enhancer =

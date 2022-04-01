@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import useRtcClient from '../store/useRtcClient'
 import Header from '../components/pages/Header'
 import Footer from '../components/pages/Footer'
-// import SideMenu from '../components/pages/SideMenu'
+import SideMenu from '../components/pages/SideMenu'
 
 const Layout: FC = ({ children }) => {
   const rtcClient = useRtcClient()
@@ -30,15 +30,15 @@ const Layout: FC = ({ children }) => {
           <Header
             isMenuOpen={isMenuOpen}
             setMenuOpen={setMenuOpen}
-            // rtcClient={rtcClient}
+            rtcClient={rtcClient}
           />
           <div style={appStyle(windowHeight)}>{childrenWithProps}</div>
           <Footer />
-          {/*<SideMenu*/}
-          {/*  isMenuOpen={isMenuOpen}*/}
-          {/*  setMenuOpen={setMenuOpen}*/}
-          {/*  rtcClient={rtcClient}*/}
-          {/*/>*/}
+          <SideMenu
+            isMenuOpen={isMenuOpen}
+            setMenuOpen={setMenuOpen}
+            rtcClient={rtcClient}
+          />
         </div>
     </>
   )

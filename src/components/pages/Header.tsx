@@ -12,10 +12,12 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { useState } from 'react'
 import RtcClient from '../../utilities/RtcClient'
 import { makeStyles } from '@material-ui/core/styles'
+import Logo from "./Logo";
 
 type Props = {
   isMenuOpen: boolean
   setMenuOpen: Dispatch<SetStateAction<boolean>>
+  rtcClient: RtcClient
 }
 
 const useStyles = makeStyles(() => ({
@@ -24,8 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
-  const DEAULT_TITLE = process.env.APP_NAME
+const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen, rtcClient }) => {
   const [anchorEl, setAnchorEl] = useState<
     (EventTarget & HTMLButtonElement) | null
   >(null)
@@ -42,9 +43,7 @@ const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
             >
               <MenuIcon />
             </IconButton>
-            <div className="App-logo">
-              {DEAULT_TITLE}
-            </div>
+            <Logo />
           </Grid>
 
             <Grid container justifyContent="flex-end">

@@ -1,28 +1,20 @@
+🌙 amplify-reactjs-sample
+====
+
+![GitHub issues](https://img.shields.io/github/issues/isystk/amplify-reactjs-sample)
+![GitHub forks](https://img.shields.io/github/forks/isystk/amplify-reactjs-sample)
+![GitHub stars](https://img.shields.io/github/stars/isystk/amplify-reactjs-sample)
+![GitHub license](https://img.shields.io/github/license/isystk/amplify-reactjs-sample)
+
+## 📗 プロジェクトの概要
+
+AWS Amplify の学習用サンプルアプリケーションです。
+
+## 🌐 Demo
 
 
-参考サイト
-https://qiita.com/t_okkan/items/38aca98993bf06598af6
 
-
-## amplify の利用方法
-```shell
-# amplify コマンドをインストールする
-$ npm install -g @aws-amplify/cli
-$ amplify -v
-4.16.1
-
-# amplify を利用する為の設定
-$ amplify configure
-? user name:  amplify-lBpzV
-
-# AWS から amplify の状態をローカルに取り込む
-$ amplify pull --appId d28qg1769uc44q --envName dev
-
-# ローカル の状態を AWS の amplify へ反映する
-$ amplify push
-```
-
-#### AWS にamplifyの環境を構築する
+## 🔧  AWS にamplifyの環境を構築する
 ```text
 $ rm -Rf amplify
 $ amplify init
@@ -46,13 +38,80 @@ Using default provider  awscloudformation
 $ amplify delete
 ```
 
-#### 
+## 📦 ディレクトリ構造
+
+```
+.
+├── LICENSE
+├── README.md
+├── amplify
+│   ├── #current-cloud-backend
+│   ├── backend
+│   ├── cli.json
+│   ├── hooks
+│   └── team-provider-info.json
+├── node_modules
+├── package.json
+├── public
+├── src
+│   ├── aws-exports.js
+│   ├── components
+│   ├── graphql
+│   ├── images
+│   ├── index.tsx
+│   ├── models
+│   ├── react-app-env.d.ts
+│   ├── reportWebVitals.ts
+│   ├── setupTests.ts
+│   ├── store
+│   ├── styles
+│   ├── ui-components
+│   └── utilities
+├── tsconfig.json
+└── yarn.lock
+
+```
 
 
+## 🖊️amplify の利用方法 
 
-run
+```shell
+# amplify コマンドをインストールする
+$ npm install -g @aws-amplify/cli
+$ amplify -v
+4.16.1
+
+# amplify を利用する為の設定
+$ amplify configure
+? user name:  amplify-lBpzV
+
+# AWS から amplify の状態をローカルに取り込む
+$ amplify pull --appId d28qg1769uc44q --envName dev
+
+# ローカル の状態を AWS の amplify へ反映する
+$ amplify push
+```
+
+## 💬 使い方
 ```text
 yarn
 yarn build
 yarn start
 ```
+
+## 🎨 参考
+
+| プロジェクト| 概要|
+| :---------------------------------------| :-------------------------------|
+| [AWS Amplify　はじめてみる編](https://qiita.com/t_okkan/items/38aca98993bf06598af6)| AWS Amplify　はじめてみる編 |
+| [Material Icons](https://v4.mui.com/components/material-icons/)| Material Icons |
+
+
+## 🎫 Licence
+
+[MIT](https://github.com/isystk/amplify-reactjs-sample/blob/master/LICENSE)
+
+## 👀 Author
+
+[isystk](https://github.com/isystk)
+
