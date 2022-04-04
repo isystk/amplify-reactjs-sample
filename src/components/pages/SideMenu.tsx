@@ -12,23 +12,24 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import RtcClient from '../../utilities/RtcClient'
+import AppRoot from '../../utilities/AppRoot'
 import {useNavigate} from "react-router-dom";
+import {URL} from '../../common/constants/url'
 
 type Props = {
   isMenuOpen: boolean
   setMenuOpen: Dispatch<SetStateAction<boolean>>
-  rtcClient: RtcClient
+  appRoot: AppRoot
 }
 
-const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, rtcClient }) => {
+const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
   const navigate = useNavigate();
 
   const menu = {
     ログイン: [
       <LockOpenIcon key={0} />,
       () => {
-        navigate("/login");
+        navigate(URL.SignIn);
         setMenuOpen(!isMenuOpen)
       },
       false,
@@ -36,7 +37,7 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, rtcClient }) => {
     マイページ: [
       <AccountCircleIcon key={0} />,
       () => {
-        navigate("/member");
+        navigate(URL.Member);
         setMenuOpen(!isMenuOpen)
       },
       false,

@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useReducer, useState, VFC} from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { withAuthenticator } from 'aws-amplify-react'
@@ -9,6 +9,7 @@ import { onCreatePost } from '../../graphql/subscriptions';
 import awsconfig from '../../aws-exports';
 
 import Layout from "../Layout";
+import AppRoot from "../../utilities/AppRoot";
 
 Amplify.configure(awsconfig);
 
@@ -46,8 +47,11 @@ type Post = {
 type User = {
   username: ''
 }
+type Props = {
+  appRoot: AppRoot
+}
 
-function Top() {
+const Top: VFC<Props> = ({ appRoot }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [user, setUser] = useState<User|null>(null);
   const [title, setTitle] = useState<string>('');

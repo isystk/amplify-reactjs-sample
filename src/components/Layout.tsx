@@ -1,12 +1,12 @@
 import React, {FC, ReactNode, useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
-import useRtcClient from '../store/useRtcClient'
+import useAppRoot from '../store/useAppRoot'
 import Header from '../components/pages/Header'
 import Footer from '../components/pages/Footer'
 import SideMenu from '../components/pages/SideMenu'
 
 const Layout: FC = ({ children }) => {
-  const rtcClient = useRtcClient()
+  const appRoot = useAppRoot()
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [windowHeight, setWindowHeight] = useState(0)
 
@@ -14,10 +14,10 @@ const Layout: FC = ({ children }) => {
     setWindowHeight(window.innerHeight)
   }, [])
 
-  console.log("rtcClient", rtcClient)
-  if (!rtcClient) return <></>
+  console.log("appRoot", appRoot)
+  if (!appRoot) return <></>
 
-  const newProps = { children, rtcClient }
+  const newProps = { children, appRoot }
   const childrenWithProps = React.Children.map(
     //@ts-ignore
     children,
@@ -30,14 +30,14 @@ const Layout: FC = ({ children }) => {
           <Header
             isMenuOpen={isMenuOpen}
             setMenuOpen={setMenuOpen}
-            rtcClient={rtcClient}
+            appRoot={appRoot}
           />
           <div style={appStyle(windowHeight)}>{childrenWithProps}</div>
           <Footer />
           <SideMenu
             isMenuOpen={isMenuOpen}
             setMenuOpen={setMenuOpen}
-            rtcClient={rtcClient}
+            appRoot={appRoot}
           />
         </div>
     </>
