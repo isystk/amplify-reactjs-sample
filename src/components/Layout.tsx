@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import useAppRoot from '../store/useAppRoot'
 import Header from '../components/pages/Header'

@@ -6,9 +6,8 @@ import Top from '../components/pages/Top';
 import SignIn from "../components/pages/SignIn";
 import NotFound from "../components/pages/NotFound";
 import useAppRoot from "../store/useAppRoot";
-import AuthCheck from "../auth/AuthCheck";
+import {RouteAuthGuard} from "../auth/RouteAuthGuard";
 import Member from "./pages/Member";
-import {Auth} from "aws-amplify";
 
 const App = () => {
   const appRoot = useAppRoot()
@@ -31,7 +30,7 @@ const App = () => {
         <Route path={URL.SignIn} element={<SignIn appRoot={appRoot}/>}/>
 
         {/* ★ログインユーザー専用ここから */}
-            <Route path={URL.Member} element={<Member appRoot={appRoot}/>}/>
+        <Route path={URL.Member} element={<RouteAuthGuard component={<Member appRoot={appRoot} />} redirect={URL.SignIn} />}/>
         {/* ★ログインユーザー専用ここまで */}
 
         <Route path="*" element={<NotFound/>}/>

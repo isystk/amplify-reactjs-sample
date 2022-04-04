@@ -105,7 +105,7 @@ yarn start
 | :---------------------------------------| :-------------------------------|
 | [AWS Amplify　はじめてみる編](https://qiita.com/t_okkan/items/38aca98993bf06598af6)| AWS Amplify　はじめてみる編 |
 | [Material Icons](https://v4.mui.com/components/material-icons/)| Material Icons |
-
+https://zenn.dev/longbridge/articles/61b05d8bdb014d
 
 ## 🎫 Licence
 

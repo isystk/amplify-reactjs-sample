@@ -19,15 +19,23 @@ export default class AppRoot {
   }
 
   async signOut() {
-    console.log('signOut')
-    this.self = {id: undefined, name: ''}
-    await this.setAppRoot()
+    try {
+      await Auth.signOut();
+      this.self = {id: undefined, name: ''}
+      await this.setAppRoot()
+    } catch (error) {
+      console.log("error signing out", error);
+    }
   }
 
   async signIn(email: string, password: string) {
     try {
-      await Auth.signIn(email, password);
-      await this.signCheck()
+      const user = await Auth.signIn(email, password);
+      if (user) {
+        console.log("success signing in", user);
+        this.self = {id: user.id, name: user.username}
+        await this.setAppRoot()
+      }
     } catch (error) {
       console.log("error signing in", error);
     }
@@ -35,7 +43,6 @@ export default class AppRoot {
 
   async signCheck() {
      const user = await Auth.currentUserInfo();
-     console.log("success signing in", user);
      if (user) {
        this.self = {id: user.id, name: user.username}
        await this.setAppRoot()

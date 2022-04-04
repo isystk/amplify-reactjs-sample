@@ -1,7 +1,6 @@
 import React, {useEffect, useReducer, useState, VFC} from 'react';
 import Amplify, {Auth} from 'aws-amplify';
 import API, {graphqlOperation} from '@aws-amplify/api';
-import {withAuthenticator} from 'aws-amplify-react'
 import {createPost} from '../../graphql/mutations';
 import {listPosts} from '../../graphql/queries';
 import {onCreatePost} from '../../graphql/subscriptions';
@@ -183,7 +182,4 @@ const signUpConfig = {
   ]
 }
 
-// @ts-ignore
-export default withAuthenticator(Top, {
-  signUpConfig: signUpConfig
-});
+export default Top

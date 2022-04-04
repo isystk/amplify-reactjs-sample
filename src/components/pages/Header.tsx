@@ -35,31 +35,33 @@ const CommonHeader: VFC<Props> = ({isMenuOpen, setMenuOpen, appRoot}) => {
             <Logo/>
           </Grid>
 
-          <Grid container justifyContent="flex-end">
-            <Button
-              color="inherit"
-              aria-owns={anchorEl ? 'user-menu' : undefined}
-              aria-haspopup="true"
-              onClick={(e) => setAnchorEl(e.currentTarget)}
-              className={classes.noTransform}
-            >
-              {/*{appRoot.self.name} さん*/}
-            </Button>
-            <Menu
-              id="user-menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClick={() => setAnchorEl(null)}
-            >
-              <MenuItem
-                onClick={async () => {
-                  // await appRoot.signOut()
-                }}
+          {appRoot.self.name &&
+            <Grid container justifyContent="flex-end">
+              <Button
+                color="inherit"
+                aria-owns={anchorEl ? 'user-menu' : undefined}
+                aria-haspopup="true"
+                onClick={(e) => setAnchorEl(e.currentTarget)}
+                className={classes.noTransform}
               >
-                ログアウト
-              </MenuItem>
-            </Menu>
-          </Grid>
+                {appRoot.self.name} さん
+              </Button>
+              <Menu
+                id="user-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClick={() => setAnchorEl(null)}
+              >
+                <MenuItem
+                  onClick={async () => {
+                    await appRoot.signOut()
+                  }}
+                >
+                  ログアウト
+                </MenuItem>
+              </Menu>
+            </Grid>
+          }
         </Toolbar>
       </AppBar>
     </>
