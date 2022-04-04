@@ -1,6 +1,7 @@
+import {Auth} from "aws-amplify";
 
 export type Self = {
-  token?: string
+  id?: string
   name: string
 }
 
@@ -10,7 +11,7 @@ export default class AppRoot {
 
   constructor(setAppRoot: (appRoot: AppRoot) => void) {
     this._setAppRoot = setAppRoot
-    this.self = { token: undefined, name: '' }
+    this.self = {id: undefined, name: ''}
   }
 
   async setAppRoot() {
@@ -19,13 +20,25 @@ export default class AppRoot {
 
   async signOut() {
     console.log('signOut')
-    this.self = { token: undefined, name: '' }
+    this.self = {id: undefined, name: ''}
     await this.setAppRoot()
   }
 
-  async signIn(name: string) {
-    console.log('signIn', name)
-    this.self = { token: undefined, name }
-    await this.setAppRoot()
+  async signIn(email: string, password: string) {
+    try {
+      await Auth.signIn(email, password);
+      await this.signCheck()
+    } catch (error) {
+      console.log("error signing in", error);
+    }
+  }
+
+  async signCheck() {
+     const user = await Auth.currentUserInfo();
+     console.log("success signing in", user);
+     if (user) {
+       this.self = {id: user.id, name: user.username}
+       await this.setAppRoot()
+     }
   }
 }

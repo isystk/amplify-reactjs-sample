@@ -4,9 +4,9 @@ import Layout from "../Layout";
 
 const NotFound = () => {
   return (
-      <Layout>
-          <h2>Not Found Page</h2>
-      </Layout>
+    <Layout>
+      <h2>Not Found Page</h2>
+    </Layout>
   );
 }
 

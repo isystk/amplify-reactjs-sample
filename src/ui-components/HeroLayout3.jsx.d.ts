@@ -5,9 +5,10 @@
  **************************************************************************/
 
 import React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps } from "@aws-amplify/ui-react";
+import {EscapeHatchProps} from "@aws-amplify/ui-react/internal";
+import {FlexProps} from "@aws-amplify/ui-react";
+
 export declare type HeroLayout3Props = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: EscapeHatchProps | undefined | null;
+  overrides?: EscapeHatchProps | undefined | null;
 }>;
 export default function HeroLayout3(props: HeroLayout3Props): React.ReactElement;

@@ -5,11 +5,12 @@
  **************************************************************************/
 
 import React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps } from "@aws-amplify/ui-react";
+import {EscapeHatchProps} from "@aws-amplify/ui-react/internal";
+import {FlexProps} from "@aws-amplify/ui-react";
+
 export declare type HeroLayout1Props = React.PropsWithChildren<Partial<FlexProps> & {
-    mode?: "Dark" | "Light";
+  mode?: "Dark" | "Light";
 } & {
-    overrides?: EscapeHatchProps | undefined | null;
+  overrides?: EscapeHatchProps | undefined | null;
 }>;
 export default function HeroLayout1(props: HeroLayout1Props): React.ReactElement;

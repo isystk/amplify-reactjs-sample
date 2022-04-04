@@ -5,9 +5,10 @@
  **************************************************************************/
 
 import React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ViewProps } from "@aws-amplify/ui-react";
+import {EscapeHatchProps} from "@aws-amplify/ui-react/internal";
+import {ViewProps} from "@aws-amplify/ui-react";
+
 export declare type CardDProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: EscapeHatchProps | undefined | null;
+  overrides?: EscapeHatchProps | undefined | null;
 }>;
 export default function CardD(props: CardDProps): React.ReactElement;

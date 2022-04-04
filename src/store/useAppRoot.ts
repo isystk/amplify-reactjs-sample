@@ -1,7 +1,7 @@
-import { useEffect, useReducer } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import {useEffect, useReducer} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import AppRoot from '../utilities/AppRoot'
-import { forceRender, setAppRoot } from '../store/Store'
+import {forceRender, setAppRoot} from '../store/Store'
 
 interface IRootState {
   app: Client
@@ -13,7 +13,7 @@ type Client = {
 
 const useAppRoot = () => {
   const dispatch = useDispatch()
-  const { root } = useSelector<IRootState, Client>((state) => state.app)
+  const {root} = useSelector<IRootState, Client>((state) => state.app)
   // const [, forceRender] = useReducer((boolean) => !boolean, false)
 
   const _setAppRoot = async (appRoot: AppRoot) => {

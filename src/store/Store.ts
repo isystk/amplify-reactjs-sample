@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {Dispatch} from "react";
 import AppRoot from "../utilities/AppRoot";
@@ -23,7 +23,7 @@ const AppSlice = createSlice({
 })
 
 // Actions
-const { toggleState, setState } = AppSlice.actions
+const {toggleState, setState} = AppSlice.actions
 
 // 外部からはこの関数を呼んでもらう
 export const forceRender = () => async (dispatch: Dispatch<PayloadAction<App>>) => {
@@ -31,7 +31,7 @@ export const forceRender = () => async (dispatch: Dispatch<PayloadAction<App>>) 
   dispatch(toggleState())
 }
 export const setAppRoot = (appRoot: AppRoot) => async (
-    dispatch: Dispatch<PayloadAction<App>>
+  dispatch: Dispatch<PayloadAction<App>>
 ) => {
   //@ts-ignore
   dispatch(setState(appRoot))

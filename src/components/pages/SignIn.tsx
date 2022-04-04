@@ -1,106 +1,156 @@
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
-import AppRoot from '../../utilities/AppRoot'
-import React, { VFC, useCallback, useEffect, useState } from 'react'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
-import Button from '@material-ui/core/Button'
-import { URL } from '../../common/constants/url'
+import React, {VFC, useCallback, useEffect, useState, useContext} from 'react'
 import Layout from "../Layout";
+import AppRoot from '../../utilities/AppRoot'
+import {URL} from '../../common/constants/url'
 import {useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+  TextField,
+  Button, FormGroup, Input, InputLabel,
+} from '@material-ui/core'
+import {Formik, Form} from 'formik'
+import * as Yup from 'yup'
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}))
 
 type Props = {
   appRoot: AppRoot
 }
 
-const SignIn: VFC<Props> = ({ appRoot }) => {
-  const label = 'あなたの名前'
-  const classes = useStyles()
-  const [disabled, setDisabled] = useState(true)
-  const [name, setName] = useState('')
-  const [isComposed, setIsComposed] = useState(false)
-  const navigate = useNavigate();
+type Form = {
+  email: string
+  password: string
+}
+
+const SignIn: VFC<Props> = ({appRoot}) => {
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const disabled = name === ''
-    setDisabled(disabled)
-  }, [name])
+    if (appRoot.self.name) {
+      navigate(URL.Top)
+    }
+  }, [appRoot.self.name])
 
-  const initializeLocalPeer = useCallback(
-    async (e) => {
-      e.persist()
-      await appRoot.signIn(name)
-      e.preventDefault()
-    },
-    [name, appRoot]
-  )
-
-  if (appRoot.self.name !== '') {
-    navigate(URL.Top);
+  // フォームの初期値
+  const initialValues = {
+    email: '',
+    password: '',
+  }
+  // フォームのバリデーション
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required(
+      'メールアドレスを入力してください。'
+    ),
+    password: Yup.string().required(
+      'パスワードを入力してください。'
+    ),
+  })
+  // フォームの送信
+  const onSubmit = async (values: Form) => {
+    const {email, password} = values
+    await appRoot.signIn(email, password)
   }
 
   return (
     <Layout>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            {label}を入力してください
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-                autoFocus
-                fullWidth
-                label={label}
-                margin="normal"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-                onCompositionEnd={() => setIsComposed(false)}
-                onCompositionStart={() => setIsComposed(true)}
-                onKeyDown={async (e) => {
-                  if (isComposed) return
-                  if ((e.target as HTMLInputElement).value === '') return
-                  if (e.key === 'Enter') await initializeLocalPeer(e)
-                }}
-                required
-                value={name}
-                variant="outlined"
-            />
-            <Button
-                className={classes.submit}
-                color="primary"
-                disabled={disabled}
-                fullWidth
-                onClick={async (e) => await initializeLocalPeer(e)}
-                type="submit"
-                variant="contained"
-            >
-              決定
-            </Button>
-          </form>
+      <section>
+        <div>
+          <h1>ログイン</h1>
         </div>
-      </Container>
+        <div>
+          <Grid container justifyContent="center" spacing={1}>
+            <Grid item md={12}>
+              <Card>
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={onSubmit}
+                >
+                  {({
+                      setFieldValue,
+                      dirty,
+                      isValid,
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleBlur,
+                    }) => {
+                    return (
+                      <Form>
+                        <CardContent>
+                          <Grid
+                            item
+                            container
+                            spacing={3}
+                            justifyContent="center"
+                          >
+                            <Grid item xs={12} sm={12} md={12}>
+                              <FormGroup>
+                                <InputLabel required={true}>メールアドレス</InputLabel>
+                                <TextField
+                                  type="text"
+                                  name="email"
+                                  value={values.email}
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  error={!!(touched.email && errors.email)}
+                                  helperText={errors.email}
+                                  margin="dense"
+                                />
+                              </FormGroup>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12}>
+                              <FormGroup>
+                                <InputLabel required={true}>パスワード</InputLabel>
+                                <TextField
+                                  type="password"
+                                  name="password"
+                                  value={values.password}
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  error={!!(touched.password && errors.password)}
+                                  helperText={errors.password}
+                                  margin="dense"
+                                />
+                              </FormGroup>
+                            </Grid>
+                          </Grid>
+                        </CardContent>
+                        <CardActions>
+                          <Grid item xs={12} sm={12} md={12}>
+                            <Button
+                              color="primary"
+                              disabled={!isValid}
+                              fullWidth
+                              type="submit"
+                              variant="contained"
+                            >
+                              ログインする
+                            </Button>
+                          </Grid>
+                        </CardActions>
+                      </Form>
+                    )
+                  }}
+                </Formik>
+                <CardContent>
+                  <Grid item container spacing={1}>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <Link to={URL.SignUp}>
+                        会員登録はこちら
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </div>
+      </section>
     </Layout>
   )
 }

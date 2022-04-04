@@ -5,9 +5,10 @@
  **************************************************************************/
 
 import React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps } from "@aws-amplify/ui-react";
+import {EscapeHatchProps} from "@aws-amplify/ui-react/internal";
+import {FlexProps} from "@aws-amplify/ui-react";
+
 export declare type ContactUsProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: EscapeHatchProps | undefined | null;
+  overrides?: EscapeHatchProps | undefined | null;
 }>;
 export default function ContactUs(props: ContactUsProps): React.ReactElement;

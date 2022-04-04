@@ -5,7 +5,7 @@ import Header from '../components/pages/Header'
 import Footer from '../components/pages/Footer'
 import SideMenu from '../components/pages/SideMenu'
 
-const Layout: FC = ({ children }) => {
+const Layout: FC = ({children}) => {
   const appRoot = useAppRoot()
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [windowHeight, setWindowHeight] = useState(0)
@@ -14,32 +14,31 @@ const Layout: FC = ({ children }) => {
     setWindowHeight(window.innerHeight)
   }, [])
 
-  console.log("appRoot", appRoot)
   if (!appRoot) return <></>
 
-  const newProps = { children, appRoot }
+  const newProps = {children, appRoot}
   const childrenWithProps = React.Children.map(
     //@ts-ignore
     children,
-    (child: React.ReactElement) => React.cloneElement(child, { ...newProps })
+    (child: React.ReactElement) => React.cloneElement(child, {...newProps})
   )
 
   return (
     <>
-      <div className="App" >
-          <Header
-            isMenuOpen={isMenuOpen}
-            setMenuOpen={setMenuOpen}
-            appRoot={appRoot}
-          />
-          <div style={appStyle(windowHeight)}>{childrenWithProps}</div>
-          <Footer />
-          <SideMenu
-            isMenuOpen={isMenuOpen}
-            setMenuOpen={setMenuOpen}
-            appRoot={appRoot}
-          />
-        </div>
+      <div className="App">
+        <Header
+          isMenuOpen={isMenuOpen}
+          setMenuOpen={setMenuOpen}
+          appRoot={appRoot}
+        />
+        <div style={appStyle(windowHeight)}>{childrenWithProps}</div>
+        <Footer/>
+        <SideMenu
+          isMenuOpen={isMenuOpen}
+          setMenuOpen={setMenuOpen}
+          appRoot={appRoot}
+        />
+      </div>
     </>
   )
 }
@@ -52,8 +51,6 @@ Layout.propTypes = {
 const appStyle = (vh: number) => {
   return {
     height: vh,
-    width: '100vw',
-    overflow: 'scroll',
     display: 'flex',
     justifyContent: 'center',
   }

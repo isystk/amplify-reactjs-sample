@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './styles/app.scss';
 import reportWebVitals from './reportWebVitals';
 
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
+import {createStore, applyMiddleware} from 'redux'
+import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 import reducers from './store/Store'
 
@@ -15,19 +15,19 @@ import App from "./components/App";
 
 // 開発環境の場合は、redux-devtools-extension を利用できるようにする
 const enhancer =
-    process.env.NODE_ENV === 'development'
-        ? composeWithDevTools(applyMiddleware(thunk))
-        : applyMiddleware(thunk)
+  process.env.NODE_ENV === 'development'
+    ? composeWithDevTools(applyMiddleware(thunk))
+    : applyMiddleware(thunk)
 const store = createStore(reducers, enhancer)
 
 ReactDOM.render(
-    <MuiThemeProvider>
-        <React.StrictMode>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </React.StrictMode>
-    </MuiThemeProvider>,
+  <MuiThemeProvider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    </React.StrictMode>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 

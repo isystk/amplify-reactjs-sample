@@ -5,9 +5,10 @@
  **************************************************************************/
 
 import React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps } from "@aws-amplify/ui-react";
+import {EscapeHatchProps} from "@aws-amplify/ui-react/internal";
+import {FlexProps} from "@aws-amplify/ui-react";
+
 export declare type FeaturesText2x2Props = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: EscapeHatchProps | undefined | null;
+  overrides?: EscapeHatchProps | undefined | null;
 }>;
 export default function FeaturesText2x2(props: FeaturesText2x2Props): React.ReactElement;

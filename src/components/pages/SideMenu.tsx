@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, VFC } from 'react'
+import React, {Dispatch, SetStateAction, VFC} from 'react'
 import {
   Divider,
   Drawer,
@@ -22,12 +22,12 @@ type Props = {
   appRoot: AppRoot
 }
 
-const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
+const SideMenu: VFC<Props> = ({isMenuOpen, setMenuOpen, appRoot}) => {
   const navigate = useNavigate();
 
   const menu = {
     ログイン: [
-      <LockOpenIcon key={0} />,
+      <LockOpenIcon key={0}/>,
       () => {
         navigate(URL.SignIn);
         setMenuOpen(!isMenuOpen)
@@ -35,7 +35,7 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
       false,
     ],
     マイページ: [
-      <AccountCircleIcon key={0} />,
+      <AccountCircleIcon key={0}/>,
       () => {
         navigate(URL.Member);
         setMenuOpen(!isMenuOpen)
@@ -45,12 +45,12 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
   }
   return (
     <Drawer open={isMenuOpen} onClose={() => setMenuOpen(!isMenuOpen)}>
-      <div style={{ marginLeft: 'auto' }}>
+      <div style={{marginLeft: 'auto'}}>
         <IconButton onClick={() => setMenuOpen(!isMenuOpen)}>
-          <ChevronLeftIcon />
+          <ChevronLeftIcon/>
         </IconButton>
       </div>
-      <Divider />
+      <Divider/>
       <List>
         {Object.keys(menu).map((key, index) => {
           //@ts-ignore
@@ -58,7 +58,7 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
           return (
             <ListItem button key={index} onClick={func} disabled={disabled}>
               <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText primary={key} />
+              <ListItemText primary={key}/>
             </ListItem>
           )
         })}

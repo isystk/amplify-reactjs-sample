@@ -1,7 +1,4 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
-
+import {ModelInit, MutableModel, PersistentModelConstructor} from "@aws-amplify/datastore";
 
 
 type UserMetaData = {
@@ -20,7 +17,9 @@ export declare class User {
   readonly Posts?: (Post | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+
   constructor(init: ModelInit<User, UserMetaData>);
+
   static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
 }
 
@@ -34,6 +33,8 @@ export declare class Post {
   readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+
   constructor(init: ModelInit<Post, PostMetaData>);
+
   static copyOf(source: Post, mutator: (draft: MutableModel<Post, PostMetaData>) => MutableModel<Post, PostMetaData> | void): Post;
 }
