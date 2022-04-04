@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {createContext, Dispatch} from "react";
+import {Dispatch} from "react";
 import AppRoot from "../utilities/AppRoot";
 
 type App = {

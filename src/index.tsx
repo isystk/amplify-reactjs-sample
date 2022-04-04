@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './styles/app.scss';
 import reportWebVitals from './reportWebVitals';
 
@@ -8,7 +8,7 @@ import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
-import reducers from './store/Store'
+import reducers from './store'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import App from "./components/App";
@@ -20,16 +20,17 @@ const enhancer =
     : applyMiddleware(thunk)
 const store = createStore(reducers, enhancer)
 
-ReactDOM.render(
-  <MuiThemeProvider>
-    <React.StrictMode>
-      <Provider store={store}>
-        <App/>
-      </Provider>
-    </React.StrictMode>
-  </MuiThemeProvider>,
-  document.getElementById('root')
-);
+const container = document.getElementById('root');
+if (container) {
+    const root = ReactDOM.createRoot(container);
+    root.render(
+        <MuiThemeProvider>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </MuiThemeProvider>
+    );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

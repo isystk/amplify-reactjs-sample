@@ -1,9 +1,13 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
 import Logo from './Logo';
+import {BrowserRouter} from "react-router-dom";
+import renderer from 'react-test-renderer';
 
-test('renders learn react link', () => {
-  render(<Logo/>);
-  const linkElement = screen.getByText(/amplify-reactjs-sample/i);
-  expect(linkElement).toBeInTheDocument();
+test('Logo', () => {
+  const component = renderer.create(
+      <BrowserRouter>
+        <Logo />
+      </BrowserRouter>
+  )
+  expect(component).toMatchSnapshot()
 });

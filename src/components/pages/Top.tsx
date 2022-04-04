@@ -119,6 +119,7 @@ const Top: VFC<Props> = ({appRoot}) => {
         <button onClick={signOut}>Sign out</button>
         <div>
           <table>
+            <thead>
             <tr>
               <th>No</th>
               <th>Title</th>
@@ -126,6 +127,8 @@ const Top: VFC<Props> = ({appRoot}) => {
               <th>UserID</th>
               <th></th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
               <td></td>
               <td><input id='title' type='text' onChange={onChange} value={title}/></td>
@@ -137,15 +140,16 @@ const Top: VFC<Props> = ({appRoot}) => {
             </tr>
             {state.posts && state.posts.map((post: Post, index: number) => {
               return (
-                <tr key={post.id}>
-                  <td>{index + 1}</td>
-                  <td>{post.title}</td>
-                  <td>{post.description}</td>
-                  <td>{post.userID}</td>
-                  <td>{post.createdAt}</td>
-                </tr>
+                  <tr key={post.id}>
+                    <td>{index + 1}</td>
+                    <td>{post.title}</td>
+                    <td>{post.description}</td>
+                    <td>{post.userID}</td>
+                    <td>{post.createdAt}</td>
+                  </tr>
               )
             })}
+            </tbody>
           </table>
         </div>
       </div>

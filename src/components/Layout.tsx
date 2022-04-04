@@ -16,13 +16,6 @@ const Layout: FC = ({children}) => {
 
   if (!appRoot) return <></>
 
-  const newProps = {children, appRoot}
-  const childrenWithProps = React.Children.map(
-    //@ts-ignore
-    children,
-    (child: React.ReactElement) => React.cloneElement(child, {...newProps})
-  )
-
   return (
     <>
       <div className="App">
@@ -31,7 +24,7 @@ const Layout: FC = ({children}) => {
           setMenuOpen={setMenuOpen}
           appRoot={appRoot}
         />
-        <div style={appStyle(windowHeight)}>{childrenWithProps}</div>
+        <div style={appStyle(windowHeight)}>{children}</div>
         <Footer/>
         <SideMenu
           isMenuOpen={isMenuOpen}

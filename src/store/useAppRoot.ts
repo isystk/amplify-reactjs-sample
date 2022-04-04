@@ -1,7 +1,7 @@
 import {useEffect, useReducer} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import AppRoot from '../utilities/AppRoot'
-import {forceRender, setAppRoot} from '../store/Store'
+import {forceRender, setAppRoot} from '../store'
 
 interface IRootState {
   app: App
