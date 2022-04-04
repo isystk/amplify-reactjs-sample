@@ -1,14 +1,14 @@
-import React, {VFC} from 'react'
-import Layout from "../Layout";
-import AppRoot from '../../utilities/AppRoot'
-import {useNavigate} from "react-router-dom";
+import React, { VFC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Layout from '../Layout';
+import AppRoot from '../../utilities/AppRoot';
 
 type Props = {
   appRoot: AppRoot
 }
 
-const Member: VFC<Props> = ({appRoot}) => {
-  const navigate = useNavigate()
+const Member: VFC<Props> = ({ appRoot }) => {
+  const navigate = useNavigate();
 
   return (
     <Layout>
@@ -19,7 +19,7 @@ const Member: VFC<Props> = ({appRoot}) => {
 
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default Member
+export default Member;

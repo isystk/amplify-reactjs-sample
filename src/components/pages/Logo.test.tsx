@@ -1,13 +1,13 @@
 import React from 'react';
-import Logo from './Logo';
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import Logo from './Logo';
 
 test('Logo', () => {
   const component = renderer.create(
-      <BrowserRouter>
-        <Logo />
-      </BrowserRouter>
-  )
-  expect(component).toMatchSnapshot()
+    <BrowserRouter>
+      <Logo />
+    </BrowserRouter>,
+  );
+  expect(component).toMatchSnapshot();
 });

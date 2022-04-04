@@ -1,14 +1,16 @@
-import React, {useEffect, useReducer, useState, VFC} from 'react';
-import Amplify, {Auth} from 'aws-amplify';
-import API, {graphqlOperation} from '@aws-amplify/api';
-import {createPost} from '../../graphql/mutations';
-import {listPosts} from '../../graphql/queries';
-import {onCreatePost} from '../../graphql/subscriptions';
+import React, {
+  useEffect, useReducer, useState, VFC,
+} from 'react';
+import Amplify, { Auth } from 'aws-amplify';
+import API, { graphqlOperation } from '@aws-amplify/api';
+import { createPost } from '../../graphql/mutations';
+import { listPosts } from '../../graphql/queries';
+import { onCreatePost } from '../../graphql/subscriptions';
 
 import awsconfig from '../../aws-exports';
 
-import Layout from "../Layout";
-import AppRoot from "../../utilities/AppRoot";
+import Layout from '../Layout';
+import AppRoot from '../../utilities/AppRoot';
 
 Amplify.configure(awsconfig);
 
@@ -22,9 +24,9 @@ const initialState = {
 const reducer = (state: { posts: any; }, action: { type: any; posts: any; post: any; }) => {
   switch (action.type) {
     case GET:
-      return {...state, posts: action.posts};
+      return { ...state, posts: action.posts };
     case CREATE:
-      return {...state, posts: [...state.posts, action.post]}
+      return { ...state, posts: [...state.posts, action.post] };
     default:
       return state;
   }
@@ -50,7 +52,7 @@ type Props = {
   appRoot: AppRoot
 }
 
-const Top: VFC<Props> = ({appRoot}) => {
+const Top: VFC<Props> = ({ appRoot }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [user, setUser] = useState<User | null>(null);
   const [title, setTitle] = useState<string>('');
@@ -74,19 +76,18 @@ const Top: VFC<Props> = ({appRoot}) => {
 
   async function create(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    setTitle('')
-    setDescription('')
-    setUserID('')
-    const post = {title: title, description: description, userID: userID};
-    await API.graphql(graphqlOperation(createPost, {input: post}));
+    setTitle('');
+    setDescription('');
+    setUserID('');
+    const post = { title, description, userID };
+    await API.graphql(graphqlOperation(createPost, { input: post }));
   }
 
   useEffect(() => {
-
     async function getUser() {
       const user = await Auth.currentUserInfo();
       setUser(user);
-      return user
+      return user;
     }
 
     getUser();
@@ -94,7 +95,7 @@ const Top: VFC<Props> = ({appRoot}) => {
     async function getData() {
       const postData = await API.graphql(graphqlOperation(listPosts));
       // @ts-ignore
-      dispatch({type: GET, posts: postData.data.listPosts.items});
+      dispatch({ type: GET, posts: postData.data.listPosts.items });
     }
 
     getData();
@@ -104,8 +105,8 @@ const Top: VFC<Props> = ({appRoot}) => {
       next: (eventData: { value: { data: { onCreatePost: any; }; }; }) => {
         const post = eventData.value.data.onCreatePost;
         // @ts-ignore
-        dispatch({type: CREATE, post});
-      }
+        dispatch({ type: CREATE, post });
+      },
     });
 
     return () => subscription.unsubscribe();
@@ -115,47 +116,48 @@ const Top: VFC<Props> = ({appRoot}) => {
   return (
     <Layout>
       <div className="App">
-        <p>user: {user != null && user.username}</p>
+        <p>
+          user:
+          {user != null && user.username}
+        </p>
         <button onClick={signOut}>Sign out</button>
         <div>
           <table>
             <thead>
-            <tr>
-              <th>No</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>UserID</th>
-              <th></th>
-            </tr>
+              <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>UserID</th>
+                <th />
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <td></td>
-              <td><input id='title' type='text' onChange={onChange} value={title}/></td>
-              <td><input id='description' type='text' onChange={onChange} value={description}/></td>
-              <td><input id='userID' type='text' onChange={onChange} value={userID}/></td>
-              <th>
-                <button onClick={create}>New</button>
-              </th>
-            </tr>
-            {state.posts && state.posts.map((post: Post, index: number) => {
-              return (
-                  <tr key={post.id}>
-                    <td>{index + 1}</td>
-                    <td>{post.title}</td>
-                    <td>{post.description}</td>
-                    <td>{post.userID}</td>
-                    <td>{post.createdAt}</td>
-                  </tr>
-              )
-            })}
+              <tr>
+                <td />
+                <td><input id="title" type="text" onChange={onChange} value={title} /></td>
+                <td><input id="description" type="text" onChange={onChange} value={description} /></td>
+                <td><input id="userID" type="text" onChange={onChange} value={userID} /></td>
+                <th>
+                  <button onClick={create}>New</button>
+                </th>
+              </tr>
+              {state.posts && state.posts.map((post: Post, index: number) => (
+                <tr key={post.id}>
+                  <td>{index + 1}</td>
+                  <td>{post.title}</td>
+                  <td>{post.description}</td>
+                  <td>{post.userID}</td>
+                  <td>{post.createdAt}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
     </Layout>
   );
-}
+};
 
 const signUpConfig = {
   header: 'Sign Up',
@@ -167,23 +169,23 @@ const signUpConfig = {
       key: 'username',
       required: true,
       displayOrder: 1,
-      type: 'string'
+      type: 'string',
     },
     {
       label: 'Email',
       key: 'email',
       required: true,
       displayOrder: 2,
-      type: 'string'
+      type: 'string',
     },
     {
       label: 'Password',
       key: 'password',
       required: true,
       displayOrder: 3,
-      type: 'password'
-    }
-  ]
-}
+      type: 'password',
+    },
+  ],
+};
 
-export default Top
+export default Top;

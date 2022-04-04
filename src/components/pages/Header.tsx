@@ -1,9 +1,13 @@
-import React, {Dispatch, SetStateAction, useState, VFC} from 'react'
-import {AppBar, Button, Grid, IconButton, Menu, MenuItem, Toolbar,} from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
-import AppRoot from '../../utilities/AppRoot'
-import {makeStyles} from '@material-ui/core/styles'
-import Logo from "./Logo";
+import React, {
+  Dispatch, SetStateAction, useState, VFC,
+} from 'react';
+import {
+  AppBar, Button, Grid, IconButton, Menu, MenuItem, Toolbar,
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles } from '@material-ui/core/styles';
+import AppRoot from '../../utilities/AppRoot';
+import Logo from './Logo';
 
 type Props = {
   isMenuOpen: boolean
@@ -15,27 +19,27 @@ const useStyles = makeStyles(() => ({
   noTransform: {
     textTransform: 'none', // #1
   },
-}))
+}));
 
-const CommonHeader: VFC<Props> = ({isMenuOpen, setMenuOpen, appRoot}) => {
-  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null)
-  const classes = useStyles()
+const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
+  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
+  const classes = useStyles();
 
   return (
-    <>
-      <AppBar position="fixed" className="App-header">
-        <Toolbar style={{padding: 0}}>
-          <Grid container>
-            <IconButton
-              color="inherit"
-              onClick={() => setMenuOpen(!isMenuOpen)}
-            >
-              <MenuIcon/>
-            </IconButton>
-            <Logo/>
-          </Grid>
+    <AppBar position="fixed" className="App-header">
+      <Toolbar style={{ padding: 0 }}>
+        <Grid container>
+          <IconButton
+            color="inherit"
+            onClick={() => setMenuOpen(!isMenuOpen)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Logo />
+        </Grid>
 
-          {appRoot.self.name &&
+        {appRoot.self.name
+            && (
             <Grid container justifyContent="flex-end">
               <Button
                 color="inherit"
@@ -44,7 +48,9 @@ const CommonHeader: VFC<Props> = ({isMenuOpen, setMenuOpen, appRoot}) => {
                 onClick={(e) => setAnchorEl(e.currentTarget)}
                 className={classes.noTransform}
               >
-                {appRoot.self.name} さん
+                {appRoot.self.name}
+                {' '}
+                さん
               </Button>
               <Menu
                 id="user-menu"
@@ -54,18 +60,17 @@ const CommonHeader: VFC<Props> = ({isMenuOpen, setMenuOpen, appRoot}) => {
               >
                 <MenuItem
                   onClick={async () => {
-                    await appRoot.signOut()
+                    await appRoot.signOut();
                   }}
                 >
                   ログアウト
                 </MenuItem>
               </Menu>
             </Grid>
-          }
-        </Toolbar>
-      </AppBar>
-    </>
-  )
-}
+            )}
+      </Toolbar>
+    </AppBar>
+  );
+};
 
-export default CommonHeader
+export default CommonHeader;

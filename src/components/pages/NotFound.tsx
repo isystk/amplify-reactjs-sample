@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from "../Layout";
+import Layout from '../Layout';
 
-const NotFound = () => {
+function NotFound() {
   return (
     <Layout>
       <h2>Not Found Page</h2>
@@ -10,4 +10,4 @@ const NotFound = () => {
   );
 }
 
-export default NotFound
+export default NotFound;

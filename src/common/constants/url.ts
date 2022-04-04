@@ -4,4 +4,4 @@ export const URL = {
   SignUp: '/signup',
   Member: '/member',
 
-}
+};
