@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { URL } from '../common/constants/url'
+import { URL } from '@/common/constants/url'
 import Top from './pages/Top'
 import SignIn from './pages/SignIn'
 import NotFound from './pages/NotFound'

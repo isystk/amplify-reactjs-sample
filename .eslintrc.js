@@ -8,7 +8,9 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,10 +23,16 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'import'
   ],
   rules: {
     "react/prop-types": "off", // https://cpoint-lab.co.jp/article/202107/20531/
     "@typescript-eslint/ban-ts-comment": "off", // https://stackoverflow.com/questions/59729654/how-ignore-typescript-errors-with-ts-ignore
   },
+  settings: {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 };

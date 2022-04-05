@@ -13,16 +13,11 @@ type Props = {
   appRoot: AppRoot
 }
 
-export type Data<T> = {
-  text: string
-  data: T
+type Menus = {
+  [text: string]: Menu
 }
 
-export type Menus = {
-  [text: string]: Data<Menu>
-}
-
-type Menu = [React.ReactNode, () => {}, boolean]
+type Menu = [React.ReactNode, () => void, boolean]
 
 const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
   const navigate = useNavigate()
