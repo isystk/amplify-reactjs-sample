@@ -7,7 +7,7 @@ export const getPost = `query GetPost($id: ID!) {
     userID
   }
 }
-`;
+`
 export const listPosts = `query ListPosts(
   $filter: ModelPostFilterInput
   $limit: Int
@@ -24,4 +24,4 @@ export const listPosts = `query ListPosts(
     nextToken
   }
 }
-`;
+`

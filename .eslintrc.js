@@ -4,13 +4,11 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:prettier/recommended"
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -23,49 +21,10 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint',
-    "import"
+    '@typescript-eslint'
   ],
   rules: {
-    "import/no-unresolved": "off",
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: true, // devDependenciesのimportを許可
-      optionalDependencies: false,
-    }],
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
-    ],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
-    }
+    "react/prop-types": "off", // https://cpoint-lab.co.jp/article/202107/20531/
+    "@typescript-eslint/ban-ts-comment": "off", // https://stackoverflow.com/questions/59729654/how-ignore-typescript-errors-with-ts-ignore
   },
 };

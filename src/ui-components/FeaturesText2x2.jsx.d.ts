@@ -4,11 +4,13 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  ************************************************************************* */
 
-import React from 'react';
-import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
-import { FlexProps } from '@aws-amplify/ui-react';
+import React from 'react'
+import { EscapeHatchProps } from '@aws-amplify/ui-react/internal'
+import { FlexProps } from '@aws-amplify/ui-react'
 
-export declare type FeaturesText2x2Props = React.PropsWithChildren<Partial<FlexProps> & {
-  overrides?: EscapeHatchProps | undefined | null;
-}>;
-export default function FeaturesText2x2(props: FeaturesText2x2Props): React.ReactElement;
+export declare type FeaturesText2x2Props = React.PropsWithChildren<
+  Partial<FlexProps> & {
+    overrides?: EscapeHatchProps | undefined | null
+  }
+>
+export default function FeaturesText2x2(props: FeaturesText2x2Props): React.ReactElement

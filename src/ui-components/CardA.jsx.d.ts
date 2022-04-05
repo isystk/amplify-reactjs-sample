@@ -4,11 +4,13 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  ************************************************************************* */
 
-import React from 'react';
-import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
-import { FlexProps } from '@aws-amplify/ui-react';
+import React from 'react'
+import { EscapeHatchProps } from '@aws-amplify/ui-react/internal'
+import { FlexProps } from '@aws-amplify/ui-react'
 
-export declare type CardAProps = React.PropsWithChildren<Partial<FlexProps> & {
-  overrides?: EscapeHatchProps | undefined | null;
-}>;
-export default function CardA(props: CardAProps): React.ReactElement;
+export declare type CardAProps = React.PropsWithChildren<
+  Partial<FlexProps> & {
+    overrides?: EscapeHatchProps | undefined | null
+  }
+>
+export default function CardA(props: CardAProps): React.ReactElement

@@ -7,4 +7,4 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
     userID
   }
 }
-`;
+`

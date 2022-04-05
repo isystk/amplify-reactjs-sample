@@ -3,5 +3,4 @@ export const URL = {
   SignIn: '/signin',
   SignUp: '/signup',
   Member: '/member',
-
-};
+}

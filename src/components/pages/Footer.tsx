@@ -1,18 +1,16 @@
-import React, { VFC } from 'react';
+import React, { VFC } from 'react'
 
 const CommonFooter: VFC = () => (
   <footer className="App-footer">
     <strong>
-      Copyright &copy; 2021-2022
-      {' '}
+      Copyright &copy; 2021-2022{' '}
       <a href="#" className="App-link">
         isystk.com
       </a>
       .
-    </strong>
-    {' '}
+    </strong>{' '}
     All rights reserved.
   </footer>
-);
+)
 
-export default CommonFooter;
+export default CommonFooter

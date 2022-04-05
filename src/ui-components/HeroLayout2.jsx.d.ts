@@ -4,11 +4,13 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  ************************************************************************* */
 
-import React from 'react';
-import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
-import { ViewProps } from '@aws-amplify/ui-react';
+import React from 'react'
+import { EscapeHatchProps } from '@aws-amplify/ui-react/internal'
+import { ViewProps } from '@aws-amplify/ui-react'
 
-export declare type HeroLayout2Props = React.PropsWithChildren<Partial<ViewProps> & {
-  overrides?: EscapeHatchProps | undefined | null;
-}>;
-export default function HeroLayout2(props: HeroLayout2Props): React.ReactElement;
+export declare type HeroLayout2Props = React.PropsWithChildren<
+  Partial<ViewProps> & {
+    overrides?: EscapeHatchProps | undefined | null
+  }
+>
+export default function HeroLayout2(props: HeroLayout2Props): React.ReactElement

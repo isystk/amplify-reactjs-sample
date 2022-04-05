@@ -7,4 +7,4 @@ export const onCreatePost = `subscription OnCreatePost {
     userID
   }
 }
-`;
+`
