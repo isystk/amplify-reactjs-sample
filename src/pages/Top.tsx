@@ -1,53 +1,16 @@
-import React, { useEffect, useReducer, useState, VFC } from 'react'
-import Amplify from 'aws-amplify'
-import API, { graphqlOperation } from '@aws-amplify/api'
-import { createPost } from '@/services/graphql/mutations'
-import { listPosts } from '@/services/graphql/queries'
-import { onCreatePost } from '@/services/graphql/subscriptions'
-
-// @ts-ignore
-import awsconfig from '@/aws-exports'
+import React, { useEffect, useState, VFC } from 'react'
 
 import Layout from '@/components/Layout'
 import MainService from '@/services/main'
-
-Amplify.configure(awsconfig)
-
-const GET = 'GET'
-const CREATE = 'CREATE'
-
-const initialState = {
-  posts: [],
-}
-
-const reducer = (state: { posts: any }, action: { type: any; posts: any; post: any }) => {
-  switch (action.type) {
-    case GET:
-      return { ...state, posts: action.posts }
-    case CREATE:
-      return { ...state, posts: [...state.posts, action.post] }
-    default:
-      return state
-  }
-}
-
-type Post = {
-  id: React.Key | null | undefined
-  title: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
-  description: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
-  userID: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
-  createdAt: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
-}
+import { Post } from '@/services/models'
 
 type Props = {
   appRoot: MainService
 }
 
-const Top: VFC<Props> = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+const Top: VFC<Props> = ({ appRoot }) => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
-  const [userID, setUserID] = useState<string>('')
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target === null) return
@@ -58,9 +21,6 @@ const Top: VFC<Props> = () => {
       if (e.target.id === 'description') {
         setDescription(e.target.value)
       }
-      if (e.target.id === 'userID') {
-        setUserID(e.target.value)
-      }
     }
   }
 
@@ -68,36 +28,26 @@ const Top: VFC<Props> = () => {
     e.preventDefault()
     setTitle('')
     setDescription('')
-    setUserID('')
-    const post = { title, description, userID }
-    await API.graphql(graphqlOperation(createPost, { input: post }))
+
+    // 投稿処理
+    const post = { title, description, userID: appRoot.auth.id } as Post
+    await appRoot.post.createPost(post)
   }
 
   useEffect(() => {
-    async function getData() {
-      const postData = await API.graphql(graphqlOperation(listPosts))
-      // @ts-ignore
-      dispatch({ type: GET, posts: postData.data.listPosts.items })
-    }
-
-    getData()
-
-    // @ts-ignore
-    const subscription = API.graphql(graphqlOperation(onCreatePost)).subscribe({
-      next: (eventData: { value: { data: { onCreatePost: any } } }) => {
-        const post = eventData.value.data.onCreatePost
-        // @ts-ignore
-        dispatch({ type: CREATE, post })
-      },
-    })
-
-    return () => subscription.unsubscribe()
+    // 投稿一覧を取得する
+    appRoot.post.getPosts()
   }, [])
 
   return (
     <Layout>
       <div className="App">
         <div>
+          <div>
+            <input id="title" type="text" onChange={onChange} value={title} />
+            <input id="description" type="text" onChange={onChange} value={description} />
+            <button onClick={create}>New</button>
+          </div>
           <table>
             <thead>
               <tr>
@@ -109,23 +59,8 @@ const Top: VFC<Props> = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td />
-                <td>
-                  <input id="title" type="text" onChange={onChange} value={title} />
-                </td>
-                <td>
-                  <input id="description" type="text" onChange={onChange} value={description} />
-                </td>
-                <td>
-                  <input id="userID" type="text" onChange={onChange} value={userID} />
-                </td>
-                <th>
-                  <button onClick={create}>New</button>
-                </th>
-              </tr>
-              {state.posts &&
-                state.posts.map((post: Post, index: number) => (
+              {appRoot.post &&
+                appRoot.post.posts.map((post: Post, index: number) => (
                   <tr key={post.id}>
                     <td>{index + 1}</td>
                     <td>{post.title}</td>

@@ -1,17 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import './styles/app.scss'
-
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import reducers from '@/stores'
-
-import reportWebVitals from '@/reportWebVitals'
+import Amplify from 'aws-amplify'
 import App from '@/App'
+// @ts-ignore
+import awsconfig from '@/aws-exports'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import reducers from '@/stores'
+import reportWebVitals from '@/reportWebVitals'
+import thunk from 'redux-thunk'
+
+Amplify.configure(awsconfig)
 
 // 開発環境の場合は、redux-devtools-extension を利用できるようにする
 const enhancer =
