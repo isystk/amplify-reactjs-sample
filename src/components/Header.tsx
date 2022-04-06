@@ -2,13 +2,13 @@ import React, { Dispatch, SetStateAction, useState, VFC } from 'react'
 import { AppBar, Button, Grid, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { makeStyles } from '@material-ui/core/styles'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 import Logo from '@/components/Logo'
 
 type Props = {
   isMenuOpen: boolean
   setMenuOpen: Dispatch<SetStateAction<boolean>>
-  appRoot: AppRoot
+  appRoot: MainService
 }
 
 const useStyles = makeStyles(() => ({
@@ -31,7 +31,7 @@ const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
           <Logo />
         </Grid>
 
-        {appRoot.self.name && (
+        {appRoot.auth.name && (
           <Grid container justifyContent="flex-end">
             <Button
               color="inherit"
@@ -40,12 +40,12 @@ const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
               onClick={(e) => setAnchorEl(e.currentTarget)}
               className={classes.noTransform}
             >
-              {appRoot.self.name} さん
+              {appRoot.auth.name} さん
             </Button>
             <Menu id="user-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClick={() => setAnchorEl(null)}>
               <MenuItem
                 onClick={async () => {
-                  await appRoot.signOut()
+                  await appRoot.auth.signOut()
                 }}
               >
                 ログアウト

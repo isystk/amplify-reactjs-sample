@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 import { forceRender, setAppRoot } from '.'
 
 interface IRootState {
@@ -8,7 +8,7 @@ interface IRootState {
 }
 
 type App = {
-  root: AppRoot
+  root: MainService
 }
 
 const useAppRoot = () => {
@@ -16,7 +16,7 @@ const useAppRoot = () => {
   const { root } = useSelector<IRootState, App>((state) => state.app)
   // const [, forceRender] = useReducer((boolean) => !boolean, false)
 
-  const _setAppRoot = async (appRoot: AppRoot) => {
+  const _setAppRoot = async (appRoot: MainService) => {
     await dispatch(setAppRoot(appRoot))
     // forceRender()
     await dispatch(forceRender())
@@ -24,7 +24,7 @@ const useAppRoot = () => {
 
   useEffect(() => {
     const init = async () => {
-      const _appRoot = new AppRoot(_setAppRoot)
+      const _appRoot = new MainService(_setAppRoot)
       await _appRoot.setAppRoot()
     }
     if (!root) {

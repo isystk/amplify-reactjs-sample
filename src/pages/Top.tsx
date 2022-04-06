@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState, VFC } from 'react'
-import Amplify, { Auth } from 'aws-amplify'
+import Amplify from 'aws-amplify'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { createPost } from '@/services/graphql/mutations'
 import { listPosts } from '@/services/graphql/queries'
@@ -9,7 +9,7 @@ import { onCreatePost } from '@/services/graphql/subscriptions'
 import awsconfig from '@/aws-exports'
 
 import Layout from '@/components/Layout'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 
 Amplify.configure(awsconfig)
 
@@ -31,10 +31,6 @@ const reducer = (state: { posts: any }, action: { type: any; posts: any; post: a
   }
 }
 
-function signOut() {
-  Auth.signOut().then().catch()
-}
-
 type Post = {
   id: React.Key | null | undefined
   title: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
@@ -42,16 +38,13 @@ type Post = {
   userID: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
   createdAt: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined
 }
-type User = {
-  username: ''
-}
+
 type Props = {
-  appRoot: AppRoot
+  appRoot: MainService
 }
 
 const Top: VFC<Props> = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [user, setUser] = useState<User | null>(null)
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [userID, setUserID] = useState<string>('')
@@ -81,14 +74,6 @@ const Top: VFC<Props> = () => {
   }
 
   useEffect(() => {
-    async function getUser() {
-      const user = await Auth.currentUserInfo()
-      setUser(user)
-      return user
-    }
-
-    getUser()
-
     async function getData() {
       const postData = await API.graphql(graphqlOperation(listPosts))
       // @ts-ignore
@@ -112,11 +97,6 @@ const Top: VFC<Props> = () => {
   return (
     <Layout>
       <div className="App">
-        <p>
-          user:
-          {user != null && user.username}
-        </p>
-        <button onClick={signOut}>Sign out</button>
         <div>
           <table>
             <thead>

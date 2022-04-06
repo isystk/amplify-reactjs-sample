@@ -10,7 +10,7 @@ type Props = {
 export const RouteAuthGuard: React.VFC<Props> = (props) => {
   const appRoot = useAppRoot()
 
-  if (!appRoot.self.name) {
+  if (!appRoot.auth.name) {
     return <Navigate to={props.redirect} />
   }
 

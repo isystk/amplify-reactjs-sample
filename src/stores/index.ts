@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'react'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 
 type App = {
   bool?: boolean
-  root: AppRoot | null
+  root: MainService | null
 }
 
 const AppSlice = createSlice({
@@ -15,7 +15,7 @@ const AppSlice = createSlice({
     toggleState(state?) {
       state.bool = !state.bool
     },
-    setState(state, action: PayloadAction<AppRoot>) {
+    setState(state, action: PayloadAction<MainService>) {
       state.root = action.payload
     },
   },
@@ -29,7 +29,7 @@ export const forceRender = () => async (dispatch: Dispatch<PayloadAction<App>>) 
   // @ts-ignore
   dispatch(toggleState())
 }
-export const setAppRoot = (appRoot: AppRoot) => async (dispatch: Dispatch<PayloadAction<AppRoot>>) => {
+export const setAppRoot = (appRoot: MainService) => async (dispatch: Dispatch<PayloadAction<MainService>>) => {
   // @ts-ignore
   dispatch(setState(appRoot))
 }

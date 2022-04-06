@@ -4,13 +4,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import { useNavigate } from 'react-router-dom'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 import { URL } from '@/constants/url'
 
 type Props = {
   isMenuOpen: boolean
   setMenuOpen: Dispatch<SetStateAction<boolean>>
-  appRoot: AppRoot
+  appRoot: MainService
 }
 
 type Menus = {

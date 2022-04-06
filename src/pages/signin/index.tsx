@@ -4,11 +4,11 @@ import { Grid, Card, CardContent, CardActions, TextField, Button, FormGroup, Inp
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { URL } from '@/constants/url'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 import Layout from '@/components/Layout'
 
 type Props = {
-  appRoot: AppRoot
+  appRoot: MainService
 }
 
 type Form = {
@@ -20,10 +20,10 @@ const Index: VFC<Props> = ({ appRoot }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (appRoot.self.name) {
+    if (appRoot.auth.name) {
       navigate(URL.Top)
     }
-  }, [appRoot.self.name])
+  }, [appRoot.auth.name])
 
   // フォームの初期値
   const initialValues = {
@@ -38,7 +38,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
   // フォームの送信
   const onSubmit = async (values: Form) => {
     const { email, password } = values
-    await appRoot.signIn(email, password)
+    await appRoot.auth.signIn(email, password)
   }
 
   return (

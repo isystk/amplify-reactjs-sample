@@ -1,29 +1,24 @@
 import { Auth } from 'aws-amplify'
+import MainService from '@/services/main'
 
-export type Self = {
+export default class AuthService {
+  main: MainService
+
   id?: string
   name: string
-}
 
-export default class AppRoot {
-  _setAppRoot: (appRoot: AppRoot) => void
-
-  self: Self
-
-  constructor(setAppRoot: (appRoot: AppRoot) => void) {
-    this._setAppRoot = setAppRoot
-    this.self = { id: undefined, name: '' }
-  }
-
-  async setAppRoot() {
-    await this._setAppRoot(this)
+  constructor(main: MainService) {
+    this.main = main
+    this.id = undefined
+    this.name = ''
   }
 
   async signOut() {
     try {
       await Auth.signOut()
-      this.self = { id: undefined, name: '' }
-      await this.setAppRoot()
+      this.id = undefined
+      this.name = ''
+      await this.main.setAppRoot()
     } catch (error) {
       console.log('error signing out', error)
     }
@@ -34,8 +29,9 @@ export default class AppRoot {
       const user = await Auth.signIn(email, password)
       if (user) {
         console.log('success signing in', user)
-        this.self = { id: user.id, name: user.username }
-        await this.setAppRoot()
+        this.id = user.id
+        this.name = user.username
+        await this.main.setAppRoot()
       }
     } catch (error) {
       console.log('error signing in', error)
@@ -45,8 +41,9 @@ export default class AppRoot {
   async signCheck() {
     const user = await Auth.currentUserInfo()
     if (user) {
-      this.self = { id: user.id, name: user.username }
-      await this.setAppRoot()
+      this.id = user.id
+      this.name = user.username
+      await this.main.setAppRoot()
     }
   }
 }

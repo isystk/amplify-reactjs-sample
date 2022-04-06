@@ -1,9 +1,9 @@
 import React, { VFC } from 'react'
 import Layout from '@/components/Layout'
-import AppRoot from '@/utilities/AppRoot'
+import MainService from '@/services/main'
 
 type Props = {
-  appRoot: AppRoot
+  appRoot: MainService
 }
 
 const Index: VFC<Props> = () => {

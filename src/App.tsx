@@ -3,21 +3,21 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { URL } from '@/constants/url'
 import Top from '@/pages/Top'
-import SignIn from '@/pages/signin/index'
+import SignIn from '@/pages/signin'
 import NotFound from '@/pages/NotFound'
 import useAppRoot from '@/stores/useAppRoot'
 import { RouteAuthGuard } from '@/auth/RouteAuthGuard'
-import Member from '@/pages/member/index'
+import Member from '@/pages/member'
 
 function App() {
   const appRoot = useAppRoot()
 
   useEffect(() => {
     if (!appRoot) return
-    if (appRoot.self.name) return
+    if (appRoot.auth.name) return
     ;(async () => {
       // ログインチェック
-      await appRoot.signCheck()
+      await appRoot.auth.signCheck()
     })()
   }, [appRoot])
 
