@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-app-rewired start --scripts-version",
     "build": "react-app-rewired build --scripts-version",
-    "test": "react-scripts test",
+    "test": "react-app-rewired test --scripts-version=@next",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js,.tsx,.ts src/",
     "lintfix": "eslint --fix --ext .jsx,.js,.tsx,.ts src/"
@@ -15,6 +15,11 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.+)": "<rootDir>/src/$1"
+    }
   },
   "browserslist": {
     "production": [
