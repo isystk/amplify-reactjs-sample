@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useState, VFC } from 'react'
 import Amplify, { Auth } from 'aws-amplify'
 import API, { graphqlOperation } from '@aws-amplify/api'
-import { createPost } from '@/graphql/mutations'
-import { listPosts } from '@/graphql/queries'
-import { onCreatePost } from '@/graphql/subscriptions'
+import { createPost } from '@/services/graphql/mutations'
+import { listPosts } from '@/services/graphql/queries'
+import { onCreatePost } from '@/services/graphql/subscriptions'
 
 // @ts-ignore
 import awsconfig from '@/aws-exports'

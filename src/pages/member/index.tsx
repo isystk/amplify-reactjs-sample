@@ -6,7 +6,7 @@ type Props = {
   appRoot: AppRoot
 }
 
-const Member: VFC<Props> = () => {
+const Index: VFC<Props> = () => {
   return (
     <Layout>
       <section>
@@ -18,4 +18,4 @@ const Member: VFC<Props> = () => {
   )
 }
 
-export default Member
+export default Index

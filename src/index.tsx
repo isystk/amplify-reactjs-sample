@@ -8,10 +8,10 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import reducers from '@/store'
+import reducers from '@/stores'
 
 import reportWebVitals from '@/reportWebVitals'
-import App from '@/components/App'
+import App from '@/App'
 
 // 開発環境の場合は、redux-devtools-extension を利用できるようにする
 const enhancer =

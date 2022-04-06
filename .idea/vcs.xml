@@ -2,9 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/amplify-nextjs-sample" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/kubernetes-sample" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/nextjs-typescript-aws" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/nextjs-webrtc-firebase" vcs="Git" />
   </component>
 </project>

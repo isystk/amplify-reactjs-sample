@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { URL } from '@/common/constants/url'
-import Top from '@/components/pages/Top'
-import SignIn from '@/components/pages/SignIn'
-import NotFound from '@/components/pages/NotFound'
-import useAppRoot from '@/store/useAppRoot'
+import { URL } from '@/constants/url'
+import Top from '@/pages/Top'
+import SignIn from '@/pages/signin/index'
+import NotFound from '@/pages/NotFound'
+import useAppRoot from '@/stores/useAppRoot'
 import { RouteAuthGuard } from '@/auth/RouteAuthGuard'
-import Member from '@/components/pages/Member'
+import Member from '@/pages/member/index'
 
 function App() {
   const appRoot = useAppRoot()

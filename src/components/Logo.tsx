@@ -1,6 +1,6 @@
 import React, { VFC } from 'react'
 import { Link } from 'react-router-dom'
-import { URL } from '@/common/constants/url'
+import { URL } from '@/constants/url'
 
 const Logo: VFC = () => {
   const DEAULT_TITLE = 'amplify-reactjs-sample'

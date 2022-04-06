@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import useAppRoot from '@/store/useAppRoot'
-import Header from '@/components/pages/Header'
-import Footer from '@/components/pages/Footer'
-import SideMenu from '@/components/pages/SideMenu'
+import useAppRoot from '@/stores/useAppRoot'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import SideMenu from '@/components/SideMenu'
 
 const Layout: FC = ({ children }) => {
   const appRoot = useAppRoot()

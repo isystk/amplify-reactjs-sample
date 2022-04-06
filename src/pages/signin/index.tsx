@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Grid, Card, CardContent, CardActions, TextField, Button, FormGroup, InputLabel } from '@material-ui/core'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import { URL } from '@/common/constants/url'
+import { URL } from '@/constants/url'
 import AppRoot from '@/utilities/AppRoot'
 import Layout from '@/components/Layout'
 
@@ -16,7 +16,7 @@ type Form = {
   password: string
 }
 
-const SignIn: VFC<Props> = ({ appRoot }) => {
+const Index: VFC<Props> = ({ appRoot }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -114,4 +114,4 @@ const SignIn: VFC<Props> = ({ appRoot }) => {
   )
 }
 
-export default SignIn
+export default Index
