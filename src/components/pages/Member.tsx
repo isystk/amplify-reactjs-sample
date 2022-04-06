@@ -1,6 +1,6 @@
 import React, { VFC } from 'react'
-import Layout from '../Layout'
-import AppRoot from '../../utilities/AppRoot'
+import Layout from '@/components/Layout'
+import AppRoot from '@/utilities/AppRoot'
 
 type Props = {
   appRoot: AppRoot

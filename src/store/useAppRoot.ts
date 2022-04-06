@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import AppRoot from '../utilities/AppRoot'
+import AppRoot from '@/utilities/AppRoot'
 import { forceRender, setAppRoot } from '.'
 
 interface IRootState {

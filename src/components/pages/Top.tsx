@@ -1,15 +1,15 @@
 import React, { useEffect, useReducer, useState, VFC } from 'react'
 import Amplify, { Auth } from 'aws-amplify'
 import API, { graphqlOperation } from '@aws-amplify/api'
-import { createPost } from '../../graphql/mutations'
-import { listPosts } from '../../graphql/queries'
-import { onCreatePost } from '../../graphql/subscriptions'
+import { createPost } from '@/graphql/mutations'
+import { listPosts } from '@/graphql/queries'
+import { onCreatePost } from '@/graphql/subscriptions'
 
 // @ts-ignore
-import awsconfig from '../../aws-exports'
+import awsconfig from '@/aws-exports'
 
-import Layout from '../Layout'
-import AppRoot from '../../utilities/AppRoot'
+import Layout from '@/components/Layout'
+import AppRoot from '@/utilities/AppRoot'
 
 Amplify.configure(awsconfig)
 

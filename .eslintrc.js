@@ -26,5 +26,5 @@ module.exports = {
   rules: {
     "react/prop-types": "off", // https://cpoint-lab.co.jp/article/202107/20531/
     "@typescript-eslint/ban-ts-comment": "off", // https://stackoverflow.com/questions/59729654/how-ignore-typescript-errors-with-ts-ignore
-  },
+  }
 };

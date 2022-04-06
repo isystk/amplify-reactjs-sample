@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useState, VFC } from 'react'
 import { AppBar, Button, Grid, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { makeStyles } from '@material-ui/core/styles'
-import AppRoot from '../../utilities/AppRoot'
-import Logo from './Logo'
+import AppRoot from '@/utilities/AppRoot'
+import Logo from '@/components/pages/Logo'
 
 type Props = {
   isMenuOpen: boolean

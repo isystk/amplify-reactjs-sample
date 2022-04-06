@@ -3,9 +3,9 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Grid, Card, CardContent, CardActions, TextField, Button, FormGroup, InputLabel } from '@material-ui/core'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import { URL } from '../../common/constants/url'
-import AppRoot from '../../utilities/AppRoot'
-import Layout from '../Layout'
+import { URL } from '@/common/constants/url'
+import AppRoot from '@/utilities/AppRoot'
+import Layout from '@/components/Layout'
 
 type Props = {
   appRoot: AppRoot

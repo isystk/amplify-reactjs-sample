@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'react'
-import AppRoot from '../utilities/AppRoot'
+import AppRoot from '@/utilities/AppRoot'
 
 type App = {
   bool?: boolean

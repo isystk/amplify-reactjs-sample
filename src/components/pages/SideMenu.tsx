@@ -4,8 +4,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import { useNavigate } from 'react-router-dom'
-import AppRoot from '../../utilities/AppRoot'
-import { URL } from '../../common/constants/url'
+import AppRoot from '@/utilities/AppRoot'
+import { URL } from '@/common/constants/url'
 
 type Props = {
   isMenuOpen: boolean
