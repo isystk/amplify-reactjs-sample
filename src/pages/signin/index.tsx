@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Grid, Card, CardContent, CardActions, TextField, Button, FormGroup, InputLabel } from '@material-ui/core'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import { URL } from '@/constants/url'
+import { Url } from '@/constants/url'
 import MainService from '@/services/main'
 import Layout from '@/components/Layout'
 
@@ -21,7 +21,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
 
   useEffect(() => {
     if (appRoot.auth.name) {
-      navigate(URL.Top)
+      navigate(Url.Top)
     }
   }, [appRoot.auth.name])
 
@@ -101,7 +101,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
                 <CardContent>
                   <Grid item container spacing={1}>
                     <Grid item xs={12} sm={12} md={12}>
-                      <Link to={URL.SignUp}>会員登録はこちら</Link>
+                      <Link to={Url.SignUp}>会員登録はこちら</Link>
                     </Grid>
                   </Grid>
                 </CardContent>

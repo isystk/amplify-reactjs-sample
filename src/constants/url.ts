@@ -1,4 +1,4 @@
-export const URL = {
+export const Url = {
   Top: '/',
   SignIn: '/signin',
   SignUp: '/signup',

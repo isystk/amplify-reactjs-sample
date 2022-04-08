@@ -39,6 +39,7 @@ export default class AuthService {
   }
 
   async signCheck() {
+    if (this.name) return
     const user = await Auth.currentUserInfo()
     if (user) {
       this.id = user.id

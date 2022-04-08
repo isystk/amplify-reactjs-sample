@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { URL } from '@/constants/url'
+import { Url } from '@/constants/url'
 import Top from '@/pages/Top'
 import SignIn from '@/pages/signin'
 import NotFound from '@/pages/NotFound'
@@ -14,7 +14,6 @@ function App() {
 
   useEffect(() => {
     if (!appRoot) return
-    if (appRoot.auth.name) return
     ;(async () => {
       // ログインチェック
       await appRoot.auth.signCheck()
@@ -27,12 +26,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Top appRoot={appRoot} />} />
-        <Route path={URL.SignIn} element={<SignIn appRoot={appRoot} />} />
+        <Route path={Url.SignIn} element={<SignIn appRoot={appRoot} />} />
 
         {/* ★ログインユーザー専用ここから */}
         <Route
-          path={URL.Member}
-          element={<RouteAuthGuard component={<Member appRoot={appRoot} />} redirect={URL.SignIn} />}
+          path={Url.Member}
+          element={<RouteAuthGuard component={<Member appRoot={appRoot} />} redirect={Url.SignIn} />}
         />
         {/* ★ログインユーザー専用ここまで */}
 

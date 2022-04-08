@@ -6,13 +6,15 @@ body {
 
 a {
   text-decoration: none;
-  color: #fff
 }
 
 .App-logo {
   font-size: 11px;
   display: flex;
   align-items: center;
+  a {
+    color: #fff
+  }
 }
 
 /* 画面サイズが992pxより大きい場合に以下を適用 */

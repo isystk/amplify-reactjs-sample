@@ -5,7 +5,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import { useNavigate } from 'react-router-dom'
 import MainService from '@/services/main'
-import { URL } from '@/constants/url'
+import { Url } from '@/constants/url'
 
 type Props = {
   isMenuOpen: boolean
@@ -26,7 +26,7 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
     ログイン: [
       <LockOpenIcon key={0} />,
       () => {
-        navigate(URL.SignIn)
+        navigate(Url.SignIn)
         setMenuOpen(!isMenuOpen)
       },
       false,
@@ -34,7 +34,7 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
     マイページ: [
       <AccountCircleIcon key={0} />,
       () => {
-        navigate(URL.Member)
+        navigate(Url.Member)
         setMenuOpen(!isMenuOpen)
       },
       false,
