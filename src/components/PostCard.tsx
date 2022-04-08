@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core'
 import { Post } from '@/services/models'
 import NoImage from '@/assets/images/no_image.png'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({
   main: {},
@@ -25,7 +26,7 @@ const PostCard: VFC<Props> = ({ post }) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.main}>
+    <Link className={classes.main} to={`/post/${post.id}`}>
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia className={classes.media} image={post.photo || NoImage} title="Contemplative Reptile" />
@@ -44,7 +45,7 @@ const PostCard: VFC<Props> = ({ post }) => {
           </Button>
         </CardActions>
       </Card>
-    </div>
+    </Link>
   )
 }
 

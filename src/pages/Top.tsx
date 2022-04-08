@@ -16,15 +16,16 @@ const Top: VFC<Props> = ({ appRoot }) => {
     appRoot.post.getPosts()
   }, [])
 
+  if (!appRoot.post) return <></>
+
   return (
     <Layout>
       <Grid container spacing={0}>
-        {appRoot.post &&
-          appRoot.post.posts.map((post: Post, index: number) => (
-            <Grid item xs={12} md={3} key={index}>
-              <PostCard post={post} />
-            </Grid>
-          ))}
+        {appRoot.post.posts.map((post: Post, index: number) => (
+          <Grid item xs={12} md={3} key={index}>
+            <PostCard post={post} />
+          </Grid>
+        ))}
       </Grid>
     </Layout>
   )

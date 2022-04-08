@@ -8,6 +8,7 @@ import NotFound from '@/pages/NotFound'
 import useAppRoot from '@/stores/useAppRoot'
 import { RouteAuthGuard } from '@/auth/RouteAuthGuard'
 import Member from '@/pages/member'
+import PostIndex from '@/pages/post/[id]'
 
 function App() {
   const appRoot = useAppRoot()
@@ -26,6 +27,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Top appRoot={appRoot} />} />
+        <Route path="/post/:postId" element={<PostIndex appRoot={appRoot} />} />
         <Route path={Url.SignIn} element={<SignIn appRoot={appRoot} />} />
 
         {/* ★ログインユーザー専用ここから */}
