@@ -3,7 +3,7 @@ import { Button, Grid, Typography, Modal, Paper, TextField, Fade, FormGroup } fr
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import ImageFile from "@/components/Input/ImageFile";
+import ImageFile from '@/components/Input/ImageFile'
 
 type Props = {
   open: boolean
@@ -21,7 +21,7 @@ const PostRegistModal: VFC<Props> = ({ open, onClose }) => {
   const initialValues = {
     title: '',
     description: '',
-    photo: ''
+    photo: '',
   }
   // フォームのバリデーション
   const validationSchema = Yup.object().shape({
