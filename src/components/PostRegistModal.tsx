@@ -1,13 +1,16 @@
+import * as Yup from 'yup'
+import AddCircleIcon from '@material-ui/icons/AddCircle'
+import ImageFile from '@/components/Input/ImageFile'
+import MainService from '@/services/main'
 import React, { VFC } from 'react'
 import { Button, Grid, Typography, Modal, Paper, TextField, Fade, FormGroup } from '@material-ui/core'
-import AddCircleIcon from '@material-ui/icons/AddCircle'
 import { Formik, Form } from 'formik'
-import * as Yup from 'yup'
-import ImageFile from '@/components/Input/ImageFile'
+import { Post } from '@/services/models'
 
 type Props = {
   open: boolean
   onClose: () => void
+  appRoot: MainService
 }
 
 type Form = {
@@ -16,7 +19,7 @@ type Form = {
   photo: string
 }
 
-const PostRegistModal: VFC<Props> = ({ open, onClose }) => {
+const PostRegistModal: VFC<Props> = ({ open, onClose, appRoot }) => {
   // フォームの初期値
   const initialValues = {
     title: '',
@@ -31,7 +34,8 @@ const PostRegistModal: VFC<Props> = ({ open, onClose }) => {
   })
   // フォームの送信
   const onSubmit = async (values: Form) => {
-    console.log(values)
+    const post = { ...values } as Post
+    await appRoot.post.createPost(post)
   }
 
   return (

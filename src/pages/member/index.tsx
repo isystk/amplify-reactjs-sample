@@ -14,6 +14,7 @@ import {
   TableRow,
 } from '@material-ui/core'
 import PostRegistModal from '@/components/PostRegistModal'
+import * as _ from 'lodash'
 
 type Props = {
   appRoot: MainService
@@ -40,7 +41,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
             新規登録
           </Button>
           {/* Modal */}
-          <PostRegistModal open={open} onClose={() => setOpen(false)} />
+          <PostRegistModal open={open} onClose={() => setOpen(false)} appRoot={appRoot} />
         </Grid>
         <Grid item xs={12}>
           <TableContainer component={Paper} style={{ marginBottom: 30 }}>
@@ -55,7 +56,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
               </TableHead>
               <TableBody>
                 {appRoot.post &&
-                  appRoot.post.posts.map((row: Post) => (
+                  _.map(appRoot.post.posts, (row: Post) => (
                     //ページ切り替えの要素を取得
                     <TableRow hover key={row.id}>
                       {/* hoverを入れることでマウスポイントが表の上に乗った時に色が変わるアクションがつきます */}
