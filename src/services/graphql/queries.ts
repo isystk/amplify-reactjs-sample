@@ -5,6 +5,11 @@ export const getPost = `query GetPost($id: ID!) {
     description
     photo
     userID
+    _deleted
+    _lastChangedAt
+    _version
+    createdAt
+    updatedAt
   }
 }
 `
@@ -20,6 +25,11 @@ export const listPosts = `query ListPosts(
       description
       photo
       userID
+      _deleted
+      _lastChangedAt
+      _version
+      createdAt
+      updatedAt
     }
     nextToken
   }

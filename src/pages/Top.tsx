@@ -14,7 +14,7 @@ type Props = {
 const Top: VFC<Props> = ({ appRoot }) => {
   useEffect(() => {
     // 投稿一覧を取得する
-    appRoot.post.getPosts()
+    appRoot.post.listPosts()
   }, [])
 
   if (!appRoot.post) return <></>

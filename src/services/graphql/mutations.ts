@@ -8,3 +8,9 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
   }
 }
 `
+export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
+  deletePost(input: $input) {
+    id
+  }
+}
+`

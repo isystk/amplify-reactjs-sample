@@ -30,11 +30,11 @@ export declare class Post {
   readonly title?: string | null
   readonly description?: string | null
   readonly photo?: string | null
-  readonly created_at?: string | null
-  readonly updated_at?: string | null
   readonly userID: string
   readonly createdAt?: string | null
   readonly updatedAt?: string | null
+  readonly _version?: string | null
+  readonly _deleted?: string | null
 
   constructor(init: ModelInit<Post, PostMetaData>)
 

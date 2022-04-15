@@ -3,6 +3,7 @@ import Layout from '@/components/Layout'
 import MainService from '@/services/main'
 import { Post } from '@/services/models'
 import {
+  Breadcrumbs,
   Button,
   CardMedia,
   Grid,
@@ -13,6 +14,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from '@material-ui/core'
 import PostRegistModal from '@/components/PostRegistModal'
 import * as _ from 'lodash'
@@ -20,6 +22,8 @@ import NoImage from '@/assets/images/no_image.png'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { Link } from 'react-router-dom'
+import { Url } from '@/constants/url'
 
 type Props = {
   appRoot: MainService
@@ -30,34 +34,41 @@ const Index: VFC<Props> = ({ appRoot }) => {
 
   useEffect(() => {
     // 投稿一覧を取得する
-    appRoot.post.getPosts()
+    appRoot.post.listPosts()
   }, [])
 
   // 投稿の削除
   const onDeleteSubmit = async (post: Post) => {
-    console.log(post)
+    await appRoot.post.deletePost(post.id)
   }
 
   return (
     <Layout>
-      <Grid container justify="space-between">
-        <Grid item>
-          <Grid container spacing={2}>
-            <Grid item>パンくず</Grid>
+      <Grid container style={{ padding: '20px' }}>
+        <Grid item xs={12} style={{ marginBottom: '20px' }}>
+          <Grid container justify="space-between">
+            <Grid item>
+              <Breadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" to={Url.Top}>
+                  TOP
+                </Link>
+                <Typography color="primary">マイページ</Typography>
+              </Breadcrumbs>
+            </Grid>
+            <Grid item>
+              <Button
+                color="primary"
+                type="button"
+                variant="contained"
+                startIcon={<AddCircleIcon />}
+                onClick={() => setOpen(true)}
+              >
+                新規登録
+              </Button>
+              {/* Modal */}
+              <PostRegistModal open={open} onClose={() => setOpen(false)} appRoot={appRoot} />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item>
-          <Button
-            color="primary"
-            type="button"
-            variant="contained"
-            startIcon={<AddCircleIcon />}
-            onClick={() => setOpen(true)}
-          >
-            新規登録
-          </Button>
-          {/* Modal */}
-          <PostRegistModal open={open} onClose={() => setOpen(false)} appRoot={appRoot} />
         </Grid>
         <Grid item xs={12}>
           <TableContainer component={Paper} style={{ marginBottom: 30 }}>
@@ -74,7 +85,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
               </TableHead>
               <TableBody>
                 {appRoot.post &&
-                  _.map(appRoot.post.posts, (row: Post) => (
+                  _.map(appRoot.post.listMyPosts(), (row: Post) => (
                     //ページ切り替えの要素を取得
                     <TableRow hover key={row.id}>
                       {/* hoverを入れることでマウスポイントが表の上に乗った時に色が変わるアクションがつきます */}

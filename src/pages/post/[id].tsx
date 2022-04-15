@@ -1,11 +1,12 @@
 import React, { useEffect, VFC } from 'react'
 
 import Layout from '@/components/Layout'
-import { useParams } from 'react-router-dom'
+import {Link, useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import MainService from '@/services/main'
-import { Card, CardContent, CardMedia, Grid, Typography } from '@material-ui/core'
+import {Breadcrumbs, CardMedia, Grid, Typography } from '@material-ui/core'
 import NoImage from '@/assets/images/no_image.png'
+import { Url } from '@/constants/url'
 
 const useStyles = makeStyles(() => ({
   main: {},
@@ -40,19 +41,19 @@ const PostIndex: VFC<Props> = ({ appRoot }) => {
 
   return (
     <Layout>
-      <Grid container spacing={0} justifyContent="center">
-        <Grid item xs={12} md={6}>
-          <Card className={classes.root}>
-            <CardMedia className={classes.media} image={post.photo || NoImage} title="Contemplative Reptile" />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {post.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {post.description}
-              </Typography>
-            </CardContent>
-          </Card>
+      <Grid container style={{ padding: '20px' }}>
+        <Grid item xs={12} style={{ marginBottom: '20px' }}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link color="inherit" to={Url.Top}>
+              TOP
+            </Link>
+            <Typography color="primary">{post.title}</Typography>
+          </Breadcrumbs>
+        </Grid>
+        <Grid item xs={12}>
+          <h1>{post.title}</h1>
+          <CardMedia className={classes.media} image={post.photo || NoImage} title="Contemplative Reptile" />
+          <Typography>{post.description}</Typography>
         </Grid>
       </Grid>
     </Layout>
