@@ -23,6 +23,7 @@ type Props = {
 }
 
 type Form = {
+  name: string
   email: string
   password: string
 }
@@ -38,18 +39,20 @@ const Index: VFC<Props> = ({ appRoot }) => {
 
   // フォームの初期値
   const initialValues = {
+    name: '',
     email: '',
     password: '',
   }
   // フォームのバリデーション
   const validationSchema = Yup.object().shape({
+    name: Yup.string().required('お名前を入力してください。'),
     email: Yup.string().required('メールアドレスを入力してください。'),
     password: Yup.string().required('パスワードを入力してください。'),
   })
   // フォームの送信
   const onSubmit = async (values: Form) => {
-    const { email, password } = values
-    await appRoot.auth.signIn(email, password)
+    const { name, email, password } = values
+    await appRoot.auth.signUp(name, email, password)
   }
 
   return (
@@ -60,7 +63,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
             <Link color="inherit" to={Url.Top}>
               TOP
             </Link>
-            <Typography color="primary">ログイン</Typography>
+            <Typography color="primary">会員登録</Typography>
           </Breadcrumbs>
         </Grid>
         <Grid container justifyContent="center" spacing={1}>
@@ -71,6 +74,21 @@ const Index: VFC<Props> = ({ appRoot }) => {
                   <Form>
                     <CardContent>
                       <Grid item container spacing={3} justifyContent="center">
+                        <Grid item xs={12} sm={12} md={12}>
+                          <FormGroup>
+                            <InputLabel required>お名前</InputLabel>
+                            <TextField
+                              type="text"
+                              name="name"
+                              value={values.name}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              error={!!(touched.name && errors.name)}
+                              helperText={errors.name}
+                              margin="dense"
+                            />
+                          </FormGroup>
+                        </Grid>
                         <Grid item xs={12} sm={12} md={12}>
                           <FormGroup>
                             <InputLabel required>メールアドレス</InputLabel>
@@ -106,7 +124,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
                     <CardActions>
                       <Grid item xs={12} sm={12} md={12}>
                         <Button color="primary" disabled={!isValid} fullWidth type="submit" variant="contained">
-                          ログインする
+                          会員登録する
                         </Button>
                       </Grid>
                     </CardActions>
@@ -116,7 +134,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
               <CardContent>
                 <Grid item container spacing={1}>
                   <Grid item xs={12} sm={12} md={12}>
-                    <Link to={Url.SignUp}>会員登録はこちら</Link>
+                    <Link to={Url.SignIn}>ログインはこちら</Link>
                   </Grid>
                 </Grid>
               </CardContent>

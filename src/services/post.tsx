@@ -1,5 +1,5 @@
 import MainService from '@/services/main'
-import API, { graphqlOperation } from '@aws-amplify/api'
+import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { getPost, listPosts } from '@/services/graphql/queries'
 import { createPost, deletePost } from '@/services/graphql/mutations'
 import { Post } from '@/services/models'
@@ -20,9 +20,10 @@ export default class PostService {
   }
 
   async listPosts() {
-    const postData = await API.graphql(graphqlOperation(listPosts))
+    const postData = (await API.graphql(graphqlOperation(listPosts))) as GraphQLResult
     // @ts-ignore
-    this.posts = _.mapKeys(_.filter(postData.data.listPosts.items,(post) => !post._deleted), 'id')
+    const filterPosts = _.filter(postData.data.listPosts.items, (post) => !post._deleted)
+    this.posts = _.mapKeys(filterPosts, 'id')
     await this.main.setAppRoot()
   }
 
@@ -48,10 +49,10 @@ export default class PostService {
   }
 
   async deletePost(postId: string) {
-    console.log("deletePost", postId)
+    console.log('deletePost', postId)
     const input = {
       id: postId,
-      _version: this.posts[postId]._version
+      _version: this.posts[postId]._version,
     }
     await API.graphql(graphqlOperation(deletePost, { input }))
     await this.listPosts()

@@ -104,7 +104,15 @@ const Index: VFC<Props> = ({ appRoot }) => {
                       <TableCell align="center">
                         <Grid container spacing={1}>
                           <Grid item xs={12}>
-                            <Button variant="contained" color="primary" type="submit" startIcon={<EditIcon />}>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              type="submit"
+                              startIcon={<EditIcon />}
+                              onClick={() => {
+                                setOpen(true)
+                              }}
+                            >
                               変更
                             </Button>
                           </Grid>

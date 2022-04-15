@@ -54,22 +54,25 @@ $ amplify delete
 ├── package.json
 ├── public
 ├── src
+│   ├── App.tsx
+│   ├── __test__
+│   ├── assets
+│   ├── auth
 │   ├── aws-exports.js
 │   ├── components
-│   ├── graphql
-│   ├── images
+│   ├── constants
 │   ├── index.tsx
-│   ├── models
+│   ├── pages
 │   ├── react-app-env.d.ts
 │   ├── reportWebVitals.ts
+│   ├── services
 │   ├── setupTests.ts
-│   ├── store
+│   ├── stores
 │   ├── styles
-│   ├── ui-components
-│   └── utilities
+│   └── ui-components
 ├── tsconfig.json
+├── tsconfig.paths.json
 └── yarn.lock
-
 ```
 
 
@@ -95,7 +98,6 @@ $ amplify push
 ## 💬 使い方
 ```text
 yarn
-yarn build
 yarn start
 ```
 
@@ -105,7 +107,6 @@ yarn start
 | :---------------------------------------| :-------------------------------|
 | [AWS Amplify　はじめてみる編](https://qiita.com/t_okkan/items/38aca98993bf06598af6)| AWS Amplify　はじめてみる編 |
 | [Material Icons](https://v4.mui.com/components/material-icons/)| Material Icons |
-https://zenn.dev/longbridge/articles/61b05d8bdb014d
 
 ## 🎫 Licence
 

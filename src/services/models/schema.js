@@ -17,6 +17,13 @@ export const schema = {
           isRequired: false,
           attributes: [],
         },
+        name: {
+          name: 'name',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
         created_at: {
           name: 'created_at',
           isArray: false,

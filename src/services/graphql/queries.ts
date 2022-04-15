@@ -1,3 +1,18 @@
+export const getUser = `query GetUser($token: String) {
+  listUsers(filter: {token: {eq: $token}}) {
+    items {
+      id
+      name
+      token
+      updatedAt
+      createdAt
+      _deleted
+      _lastChangedAt
+      _version
+    }
+  }
+}
+`
 export const getPost = `query GetPost($id: ID!) {
   getPost(id: $id) {
     id
