@@ -33,4 +33,17 @@ a {
   background-color: #3f51b5;
   color: #fff;
   text-align: center;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  a {
+    color: #fff;
+  }
+}
+
+.error {
+    color: #f44336;
+    margin-left: 14px;
+    margin-right: 14px;
+    font-size: 0.75rem;
 }

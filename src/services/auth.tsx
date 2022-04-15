@@ -35,7 +35,7 @@ export default class AuthService {
       }
     } catch (error) {
       console.log('error signing in', error)
-      alert('メールアドレスまたはパスワードが違います');
+      alert('メールアドレスまたはパスワードが違います')
     }
   }
 

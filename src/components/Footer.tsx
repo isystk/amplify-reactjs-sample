@@ -3,11 +3,7 @@ import React, { VFC } from 'react'
 const CommonFooter: VFC = () => (
   <footer className="App-footer">
     <strong>
-      Copyright &copy; 2021-2022{' '}
-      <a href="#" className="App-link">
-        isystk.com
-      </a>
-      .
+      Copyright &copy; 2021-2022 <a href="#">isystk.com</a>.
     </strong>{' '}
     All rights reserved.
   </footer>

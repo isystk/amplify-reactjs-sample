@@ -48,7 +48,7 @@ const PostRegistModal: VFC<Props> = ({ open, onClose, appRoot }) => {
             top: '50%',
             transform: 'translate(-50%, -50%)',
             width: '90%',
-            maxWidth: '450px',
+            maxWidth: '650px',
           }}
         >
           <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>

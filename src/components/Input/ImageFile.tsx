@@ -53,9 +53,9 @@ export const ImageFileInput: VFC<Props> = ({ label, name, ...rest }) => {
                         }
                       }}
                     />
-                    <p className="MuiFormHelperText-root MuiFormHelperText-contained Mui-error">{errors.photo}</p>
+                    <p className="error">{errors.photo}</p>
                     {photoErrors.map((error, index) => (
-                      <p className="MuiFormHelperText-root MuiFormHelperText-contained Mui-error" key={index}>
+                      <p className="error" key={index}>
                         {error}
                       </p>
                     ))}

@@ -34,7 +34,12 @@ export default class PostService {
   }
 
   async createPost(post: Post) {
-    await API.graphql(graphqlOperation(createPost, { input: post }))
+    const input = {
+      ...post,
+      userID: this.main.auth.id,
+    }
+    console.log(input)
+    await API.graphql(graphqlOperation(createPost, { input }))
     await this.getPosts()
   }
 }
