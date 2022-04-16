@@ -6,15 +6,10 @@ import NoImage from '@/assets/images/no_image.png'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({
-  main: {},
-  root: {},
   media: {
     backgroundImage: `url(${NoImage})`,
     height: '25vh',
-    borderRadius: 8,
     display: 'flex',
-    marginLeft: '10px',
-    marginTop: '10px',
   },
 }))
 
@@ -26,8 +21,8 @@ const PostCard: VFC<Props> = ({ post }) => {
   const classes = useStyles()
 
   return (
-    <Link className={classes.main} to={`/post/${post.id}`}>
-      <Card className={classes.root}>
+    <Link to={`/post/${post.id}`}>
+      <Card>
         <CardActionArea>
           <CardMedia className={classes.media} image={post.photo || NoImage} title="Contemplative Reptile" />
           <CardContent>

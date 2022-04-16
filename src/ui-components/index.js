@@ -1,8 +1,8 @@
-/** *************************************************************************
+/***************************************************************************
  * The contents of this file were generated with Amplify Studio.           *
  * Please refrain from making any modifications to this file.              *
  * Any changes to this file will be overwritten when running amplify pull. *
- ************************************************************************* */
+ **************************************************************************/
 
 export { default as Features2x3 } from './Features2x3'
 export { default as HeroLayout1 } from './HeroLayout1'

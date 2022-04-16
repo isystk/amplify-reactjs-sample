@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "amplifyreactjssample",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-b75938b1-736b-4b9d-864d-b02a6ea0b867/amplify/backend/api/amplifyreactjssample/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-bbf428de-2986-492b-a88c-8007d839ef8e/amplify/backend/api/amplifyreactjssample/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

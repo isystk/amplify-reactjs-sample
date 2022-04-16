@@ -1,7 +1,7 @@
 import MainService from '@/services/main'
 import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { getPost, listPosts } from '@/services/graphql/queries'
-import { createPost, deletePost } from '@/services/graphql/mutations'
+import { createPost, updatePost, deletePost } from '@/services/graphql/mutations'
 import { Post } from '@/services/models'
 import * as _ from 'lodash'
 
@@ -48,8 +48,17 @@ export default class PostService {
     await this.listPosts()
   }
 
+  async updatePost(post: Post) {
+    const input = {
+      ...post,
+      userID: this.main.auth.id,
+      _version: this.posts[post.id]._version,
+    }
+    await API.graphql(graphqlOperation(updatePost, { input }))
+    await this.listPosts()
+  }
+
   async deletePost(postId: string) {
-    console.log('deletePost', postId)
     const input = {
       id: postId,
       _version: this.posts[postId]._version,

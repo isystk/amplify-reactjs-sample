@@ -12,9 +12,7 @@ const useStyles = makeStyles(() => ({
   main: {},
   root: {},
   media: {
-    backgroundImage: `url(${NoImage})`,
-    height: '50vh',
-    display: 'flex',
+    width: '100%',
   },
 }))
 
@@ -51,9 +49,14 @@ const PostIndex: VFC<Props> = ({ appRoot }) => {
           </Breadcrumbs>
         </Grid>
         <Grid item xs={12}>
-          <h1>{post.title}</h1>
-          <CardMedia className={classes.media} image={post.photo || NoImage} title="Contemplative Reptile" />
-          <Typography>{post.description}</Typography>
+          <Typography variant="h1">{post.title}</Typography>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            image={post.photo || NoImage}
+            title="Contemplative Reptile"
+          />
+          <Typography style={{ marginBottom: '25px' }}>{post.description}</Typography>
         </Grid>
       </Grid>
     </Layout>

@@ -31,6 +31,7 @@ type Props = {
 
 const Index: VFC<Props> = ({ appRoot }) => {
   const [open, setOpen] = useState(false)
+  const [selectPost, setSelectPost] = useState<Post | null>(null)
 
   useEffect(() => {
     // 投稿一覧を取得する
@@ -66,7 +67,15 @@ const Index: VFC<Props> = ({ appRoot }) => {
                 新規登録
               </Button>
               {/* Modal */}
-              <PostRegistModal open={open} onClose={() => setOpen(false)} appRoot={appRoot} />
+              <PostRegistModal
+                open={open}
+                onClose={() => {
+                  setSelectPost(null)
+                  setOpen(false)
+                }}
+                appRoot={appRoot}
+                post={selectPost}
+              />
             </Grid>
           </Grid>
         </Grid>
@@ -76,7 +85,6 @@ const Index: VFC<Props> = ({ appRoot }) => {
             <Table>
               <TableHead>
                 <TableRow style={{ backgroundColor: '#F2F2F2' }}>
-                  <TableCell align="center">ID</TableCell>
                   <TableCell align="center">タイトル</TableCell>
                   <TableCell align="center">本文</TableCell>
                   <TableCell align="center">写真</TableCell>
@@ -86,12 +94,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
               <TableBody>
                 {appRoot.post &&
                   _.map(appRoot.post.listMyPosts(), (row: Post) => (
-                    //ページ切り替えの要素を取得
-                    <TableRow hover key={row.id}>
-                      {/* hoverを入れることでマウスポイントが表の上に乗った時に色が変わるアクションがつきます */}
-                      <TableCell component="th" scope="row">
-                        {row.id}
-                      </TableCell>
+                    <TableRow key={row.id}>
                       <TableCell>{row.title}</TableCell>
                       <TableCell>{row.description}</TableCell>
                       <TableCell align="center">
@@ -110,6 +113,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
                               type="submit"
                               startIcon={<EditIcon />}
                               onClick={() => {
+                                setSelectPost(row)
                                 setOpen(true)
                               }}
                             >

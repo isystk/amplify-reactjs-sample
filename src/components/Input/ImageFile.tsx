@@ -13,9 +13,9 @@ type Props = {
 const useStyles = makeStyles(() => ({
   media: {
     backgroundImage: `url(${NoImage})`,
-    border: 'solid 1px',
-    height: '25vh',
-    borderRadius: 8,
+    border: 'solid 1px #666',
+    height: '37vh',
+    width: '37vh',
     display: 'flex',
     marginLeft: '10px',
     marginTop: '10px',
@@ -65,7 +65,7 @@ export const ImageFileInput: VFC<Props> = ({ label, name, ...rest }) => {
             }
           </Field>
         </Grid>
-        <Grid item xs={12} sm={6} md={6}>
+        <Grid item xs={12} md={6}>
           <Field name={name} {...rest}>
             {
               // @ts-ignore
