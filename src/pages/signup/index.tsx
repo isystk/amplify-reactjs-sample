@@ -56,7 +56,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
   }
 
   return (
-    <Layout>
+    <Layout title="会員登録">
       <Grid container style={{ padding: '20px' }}>
         <Grid item xs={12} style={{ marginBottom: '20px' }}>
           <Breadcrumbs aria-label="breadcrumb">

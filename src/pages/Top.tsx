@@ -20,7 +20,7 @@ const Top: VFC<Props> = ({ appRoot }) => {
   if (!appRoot.post) return <></>
 
   return (
-    <Layout>
+    <Layout title="TOP">
       <Grid container spacing={0}>
         {_.map(appRoot.post.posts, (post: Post, index: number) => (
           <Grid item xs={12} md={3} key={index}>
