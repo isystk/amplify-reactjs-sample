@@ -13,6 +13,7 @@ import { RouteAuthGuard } from '@/auth/RouteAuthGuard'
 
 function App() {
   const appRoot = useAppRoot()
+  console.log('App start')
 
   useEffect(() => {
     if (!appRoot) return

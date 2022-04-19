@@ -52,7 +52,10 @@ const Index: VFC<Props> = ({ appRoot }) => {
   // フォームの送信
   const onSubmit = async (values: Form) => {
     const { name, email, password } = values
-    await appRoot.auth.signUp(name, email, password)
+    const bool = await appRoot.auth.signUp(name, email, password)
+    if (bool) {
+      navigate(Url.SignIn)
+    }
   }
 
   return (

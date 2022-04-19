@@ -14,9 +14,10 @@ type PostMetaData = {
 
 export declare class User {
   readonly id: string;
-  readonly token?: string | null;
+  readonly userSub?: string | null;
   readonly Posts?: (Post | null)[] | null;
-  readonly name?: string | null;
+  readonly fullName?: string | null;
+  readonly profileImageFileName?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);
@@ -28,6 +29,7 @@ export declare class Post {
   readonly title?: string | null;
   readonly description?: string | null;
   readonly photo?: string | null;
+  readonly authorId: string | null;
   readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

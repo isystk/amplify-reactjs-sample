@@ -1,8 +1,9 @@
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
-    token
-    name
+    userSub
+    fullName
+    profileImageFileName
   }
 }
 `
@@ -12,6 +13,7 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
     title
     description
     photo
+    authorId
     userID
   }
 }
@@ -22,6 +24,7 @@ export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
     title
     description
     photo
+    authorId
     userID
   }
 }

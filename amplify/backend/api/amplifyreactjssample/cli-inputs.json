@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "amplifyreactjssample",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-bbf428de-2986-492b-a88c-8007d839ef8e/amplify/backend/api/amplifyreactjssample/schema.graphql",
+    "gqlSchemaPath": "/Users/iseyoshitaka/github/isystk/amplify-reactjs-sample/amplify/backend/api/amplifyreactjssample/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",
@@ -12,6 +12,10 @@
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
+      },
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authamplifyreactjssample0336150d"
       }
     ],
     "conflictResolution": {

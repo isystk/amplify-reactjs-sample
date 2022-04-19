@@ -1,5 +1,5 @@
 import MainService from '@/services/main'
-import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
+import API, { graphqlOperation, GraphQLResult} from '@aws-amplify/api'
 import { getPost, listPosts } from '@/services/graphql/queries'
 import { createPost, updatePost, deletePost } from '@/services/graphql/mutations'
 import { Post } from '@/services/models'
@@ -44,7 +44,7 @@ export default class PostService {
       ...post,
       userID: this.main.auth.id,
     }
-    await API.graphql(graphqlOperation(createPost, { input }))
+    await API.graphql(graphqlOperation(createPost, { input }, this.main.auth.token))
     await this.listPosts()
   }
 
@@ -54,7 +54,7 @@ export default class PostService {
       userID: this.main.auth.id,
       _version: this.posts[post.id]._version,
     }
-    await API.graphql(graphqlOperation(updatePost, { input }))
+    await API.graphql(graphqlOperation(updatePost, { input }, this.main.auth.token))
     await this.listPosts()
   }
 
@@ -63,7 +63,7 @@ export default class PostService {
       id: postId,
       _version: this.posts[postId]._version,
     }
-    await API.graphql(graphqlOperation(deletePost, { input }))
+    await API.graphql(graphqlOperation(deletePost, { input }, this.main.auth.token))
     await this.listPosts()
   }
 }
