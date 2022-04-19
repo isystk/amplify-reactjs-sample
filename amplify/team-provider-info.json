@@ -12,6 +12,12 @@
       "AmplifyAppId": "d28qg1769uc44q"
     },
     "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d28qg1769uc44q",
+          "type": "manual"
+        }
+      },
       "auth": {
         "amplifyreactjssample0336150d": {}
       }

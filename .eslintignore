@@ -6,4 +6,6 @@ build
 amplify
 
 src/models
+src/ui-components
 /config-overrides.js
+

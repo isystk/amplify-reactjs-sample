@@ -8,7 +8,7 @@
 import React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
-export default function CardB(props) {
+export default function PostCard(props) {
   const { overrides, ...rest } = props;
   return (
     <Flex
@@ -20,7 +20,7 @@ export default function CardB(props) {
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...rest}
-      {...getOverrideProps(overrides, "CardB")}
+      {...getOverrideProps(overrides, "PostCard")}
     >
       <Image
         height="160px"
@@ -67,12 +67,15 @@ export default function CardB(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="$99 USD"
-            {...getOverrideProps(overrides, "$99 USD")}
+            children="タイトルタイトルタイトルタイトルタ"
+            {...getOverrideProps(
+              overrides,
+              "\u30BF\u30A4\u30C8\u30EB\u30BF\u30A4\u30C8\u30EB\u30BF\u30A4\u30C8\u30EB\u30BF\u30A4\u30C8\u30EB\u30BF"
+            )}
           ></Text>
           <Text
             fontFamily="Inter"
-            fontSize="16px"
+            fontSize="12px"
             fontWeight="400"
             color="rgba(13,26,38,1)"
             lineHeight="24px"
@@ -80,19 +83,22 @@ export default function CardB(props) {
             display="flex"
             direction="column"
             justifyContent="flex-start"
-            letterSpacing="0.01px"
+            letterSpacing="0px"
             shrink="0"
             alignSelf="stretch"
             objectFit="cover"
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="4bds 3 ba 2,530 sqft - Active"
-            {...getOverrideProps(overrides, "4bds 3 ba 2,530 sqft - Active")}
+            children="本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文"
+            {...getOverrideProps(
+              overrides,
+              "\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587\u672C\u6587"
+            )}
           ></Text>
           <Text
             fontFamily="Inter"
-            fontSize="14px"
+            fontSize="12px"
             fontWeight="400"
             color="rgba(48,64,80,1)"
             lineHeight="24px"
@@ -106,8 +112,11 @@ export default function CardB(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="832 34th Ave, Seattle, WA 98122"
-            {...getOverrideProps(overrides, "832 34th Ave, Seattle, WA 98122")}
+            children="詳細はこちら"
+            {...getOverrideProps(
+              overrides,
+              "\u8A73\u7D30\u306F\u3053\u3061\u3089"
+            )}
           ></Text>
         </Flex>
       </Flex>

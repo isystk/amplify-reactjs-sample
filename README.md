@@ -11,10 +11,14 @@
 AWS Amplify の学習用サンプルアプリケーションです。
 
 ## 🌐 Demo
+https://dev.d28qg1769uc44q.amplifyapp.com
+
+![TOP画面](./app1.png "TOP画面")
+![マイページ一覧](./app2.png "マイページ一覧")
+![投稿フォーム](./app3.png "投稿フォーム")
 
 
-
-## 🔧  AWS にamplifyの環境を構築する
+## 🔧  AWS クライド上にamplifyの環境を構築する
 ```text
 $ rm -Rf amplify
 $ amplify init
