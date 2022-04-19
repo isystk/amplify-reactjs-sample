@@ -41,7 +41,7 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
     ],
   } as Menus
   return (
-    <Drawer open={isMenuOpen} onClose={() => setMenuOpen(!isMenuOpen)}>
+    <Drawer anchor="left" open={isMenuOpen} onClose={() => setMenuOpen(!isMenuOpen)}>
       <div style={{ marginLeft: 'auto' }}>
         <IconButton onClick={() => setMenuOpen(!isMenuOpen)}>
           <ChevronLeftIcon />
