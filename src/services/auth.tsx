@@ -35,9 +35,9 @@ export default class AuthService {
 
         const userData = await API.graphql(graphqlOperation(getUser, { token: email }))
         // @ts-ignore
-        const { name } = userData.data.listUsers.items[0]
+        const { id, name } = userData.data.listUsers.items[0]
 
-        this.id = user.id
+        this.id = id
         this.name = name
         await this.main.setAppRoot()
       }
@@ -73,9 +73,9 @@ export default class AuthService {
     if (user) {
       const userData = await API.graphql(graphqlOperation(getUser, { token: user.attributes.email }))
       // @ts-ignore
-      const { name } = userData.data.listUsers.items[0]
+      const { id, name } = userData.data.listUsers.items[0]
 
-      this.id = user.id
+      this.id = id
       this.name = name
       await this.main.setAppRoot()
     }

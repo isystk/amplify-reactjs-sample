@@ -24,6 +24,22 @@ import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link } from 'react-router-dom'
 import { Url } from '@/constants/url'
+import { makeStyles } from '@material-ui/core/styles'
+import Pagination from '@material-ui/lab/Pagination'
+
+const useStyles = makeStyles((theme) => ({
+  list: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  pagenation: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+      display: 'inline-block',
+    },
+  },
+}))
 
 type Props = {
   appRoot: MainService
@@ -33,10 +49,28 @@ const Index: VFC<Props> = ({ appRoot }) => {
   const [open, setOpen] = useState(false)
   const [selectPost, setSelectPost] = useState<Post | null>(null)
 
+  const classes = useStyles()
+
+  const [page, setPage] = useState(1) //ページ番号
+  const [pageCount, setPageCount] = useState<number>() //ページ数
+  const [allItems, setAllItems] = useState<Post[]>([]) //全データ
+  const [displayedItems, setDisplayedItems] = useState<Post[]>([]) //表示データ
+  const displayNum = 3 //1ページあたりの項目数
+
   useEffect(() => {
     // 投稿一覧を取得する
     appRoot.post.listPosts()
   }, [])
+
+  useEffect(() => {
+    if (!appRoot.post.posts) return
+    const items = appRoot.post.listMyPosts()
+    setAllItems(items)
+    //ページカウントの計算（今回は3項目/ページなので4ページ）
+    setPageCount(Math.ceil(items.length / displayNum))
+    //表示データを抽出
+    setDisplayedItems(items.slice((page - 1) * displayNum, page * displayNum))
+  }, [appRoot.post.posts])
 
   // 投稿の削除
   const onDeleteSubmit = async (post: Post) => {
@@ -93,7 +127,7 @@ const Index: VFC<Props> = ({ appRoot }) => {
               </TableHead>
               <TableBody>
                 {appRoot.post &&
-                  _.map(appRoot.post.listMyPosts(), (row: Post) => (
+                  _.map(displayedItems, (row: Post) => (
                     <TableRow key={row.id}>
                       <TableCell>{row.title}</TableCell>
                       <TableCell>{row.description}</TableCell>
@@ -140,6 +174,21 @@ const Index: VFC<Props> = ({ appRoot }) => {
               </TableBody>
             </Table>
           </TableContainer>
+          <div className={classes.pagenation} style={{ textAlign: 'center' }}>
+            <Pagination
+              count={pageCount}
+              page={page}
+              variant="outlined"
+              color="primary"
+              size="small"
+              onChange={(_event, index) => {
+                //ページ移動時にページ番号を更新
+                setPage(index)
+                //ページ移動時に表示データを書き換える
+                setDisplayedItems(allItems.slice((index - 1) * displayNum, index * displayNum))
+              }}
+            />
+          </div>
         </Grid>
       </Grid>
     </Layout>
