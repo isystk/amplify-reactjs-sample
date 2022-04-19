@@ -35,7 +35,7 @@ export default class AuthService {
       const user = await Auth.signIn(email, password)
       if (user) {
         console.log('success signing in', user)
-        const userData = await API.graphql(graphqlOperation(getUser, { token: email }))
+        const userData = await API.graphql(graphqlOperation(getUser, { userSub: user.username }))
         // @ts-ignore
         const { id, fullName } = userData.data.listUsers.items[0]
         this.id = id
@@ -60,7 +60,7 @@ export default class AuthService {
         const input = {
           userSub: user.userSub,
           fullName: name,
-          profileImageFileName: ''
+          profileImageFileName: '',
         }
         await API.graphql(graphqlOperation(createUser, { input }))
         return true
@@ -78,9 +78,8 @@ export default class AuthService {
     console.log('signCheck')
     if (this.name) return
     const user = await Auth.currentUserInfo()
-    console.log(user)
     if (user) {
-      const userData = await API.graphql(graphqlOperation(getUser, { token: user.attributes.email }))
+      const userData = await API.graphql(graphqlOperation(getUser, { userSub: user.username }))
       // @ts-ignore
       const { id, fullName } = userData.data.listUsers.items[0]
 
@@ -92,8 +91,7 @@ export default class AuthService {
   }
 
   async getJwtToken() {
-    const session = await Auth.currentSession(); //現在のセッション情報を取得
-    return session.getIdToken().getJwtToken();
+    const session = await Auth.currentSession() //現在のセッション情報を取得
+    return session.getIdToken().getJwtToken()
   }
-
 }

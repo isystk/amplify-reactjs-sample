@@ -1,9 +1,10 @@
-export const getUser = `query GetUser($token: String) {
-  listUsers(filter: {token: {eq: $token}}) {
+export const getUser = `query GetUser($userSub: String) {
+  listUsers(filter: {userSub: {eq: $userSub}}) {
     items {
       id
-      name
-      token
+      userSub
+      fullName
+      profileImageFileName
       updatedAt
       createdAt
       _deleted
@@ -19,6 +20,7 @@ export const getPost = `query GetPost($id: ID!) {
     title
     description
     photo
+    authorId
     userID
     _deleted
     _lastChangedAt
@@ -39,6 +41,7 @@ export const listPosts = `query ListPosts(
       title
       description
       photo
+      authorId
       userID
       _deleted
       _lastChangedAt

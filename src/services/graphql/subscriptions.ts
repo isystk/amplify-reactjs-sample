@@ -4,6 +4,7 @@ export const onCreatePost = `subscription OnCreatePost {
     title
     description
     photo
+    authorId
     userID
   }
 }

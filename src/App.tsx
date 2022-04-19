@@ -10,10 +10,10 @@ import Member from '@/pages/member'
 import NotFound from '@/pages/NotFound'
 import useAppRoot from '@/stores/useAppRoot'
 import { RouteAuthGuard } from '@/auth/RouteAuthGuard'
+import { Amplify } from 'aws-amplify'
 
 function App() {
   const appRoot = useAppRoot()
-  console.log('App start')
 
   useEffect(() => {
     if (!appRoot) return
@@ -24,6 +24,17 @@ function App() {
   }, [appRoot])
 
   if (!appRoot) return <></>
+
+  // See: https://zenn.dev/hatti/articles/619352f7193c8d
+  if (appRoot.auth.name !== '') {
+    Amplify.configure({
+      aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
+    })
+  } else {
+    Amplify.configure({
+      aws_appsync_authenticationType: 'API_KEY',
+    })
+  }
 
   return (
     <BrowserRouter>

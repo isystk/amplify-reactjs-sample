@@ -1,5 +1,5 @@
 import MainService from '@/services/main'
-import API, { graphqlOperation, GraphQLResult} from '@aws-amplify/api'
+import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { getPost, listPosts } from '@/services/graphql/queries'
 import { createPost, updatePost, deletePost } from '@/services/graphql/mutations'
 import { Post } from '@/services/models'
