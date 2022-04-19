@@ -10,6 +10,17 @@
 
 AWS Amplify の学習用サンプルアプリケーションです。
 
+
+### 利用している技術
+
+- React 18
+- ReduxToolKit
+- typescript
+- MaterialUI
+- Amplify
+- Cognito
+- GraghQL
+
 ## 🌐 Demo
 https://dev.d28qg1769uc44q.amplifyapp.com
 
@@ -97,6 +108,9 @@ $ amplify pull --appId d28qg1769uc44q --envName dev
 
 # ローカル の状態を AWS の amplify へ反映する
 $ amplify push
+
+# 最新モジュールをホスティング環境にデプロイする
+$ amplify publish
 ```
 
 ## 💬 使い方
