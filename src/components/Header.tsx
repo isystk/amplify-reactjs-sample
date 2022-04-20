@@ -4,6 +4,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { makeStyles } from '@material-ui/core/styles'
 import MainService from '@/services/main'
 import Logo from '@/components/Logo'
+import { useNavigate } from 'react-router-dom'
+import { Url } from '@/constants/url'
 
 type Props = {
   isMenuOpen: boolean
@@ -18,6 +20,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null)
   const classes = useStyles()
 
@@ -46,6 +49,7 @@ const CommonHeader: VFC<Props> = ({ isMenuOpen, setMenuOpen, appRoot }) => {
               <MenuItem
                 onClick={async () => {
                   await appRoot.auth.signOut()
+                  navigate(Url.SignIn)
                 }}
               >
                 ログアウト

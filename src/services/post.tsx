@@ -20,6 +20,7 @@ export default class PostService {
   }
 
   async listPosts() {
+    this.main.auth.useAuthTypeApiKey()
     const postData = (await API.graphql(graphqlOperation(listPosts))) as GraphQLResult
     // @ts-ignore
     const filterPosts = _.filter(postData.data.listPosts.items, (post) => !post._deleted)
@@ -33,6 +34,7 @@ export default class PostService {
   }
 
   async getPost(id: string) {
+    this.main.auth.useAuthTypeApiKey()
     const postData = await API.graphql(graphqlOperation(getPost, { id }))
     // @ts-ignore
     this.posts[id] = postData.data.getPost
@@ -40,30 +42,48 @@ export default class PostService {
   }
 
   async createPost(post: Post) {
-    const input = {
-      ...post,
-      userID: this.main.auth.id,
+    try {
+      const input = {
+        ...post,
+        userID: this.main.auth.id,
+      }
+      this.main.auth.useAuthTypeCognito()
+      await API.graphql(graphqlOperation(createPost, { input }, this.main.auth.token))
+      await this.listPosts()
+    } catch (error) {
+      console.log('error create post', error)
+      alert('登録に失敗しました')
     }
-    await API.graphql(graphqlOperation(createPost, { input }, this.main.auth.token))
-    await this.listPosts()
   }
 
   async updatePost(post: Post) {
-    const input = {
-      ...post,
-      userID: this.main.auth.id,
-      _version: this.posts[post.id]._version,
+    try {
+      const input = {
+        ...post,
+        userID: this.main.auth.id,
+        _version: this.posts[post.id]._version,
+      }
+      this.main.auth.useAuthTypeCognito()
+      await API.graphql(graphqlOperation(updatePost, { input }, this.main.auth.token))
+      await this.listPosts()
+    } catch (error) {
+      console.log('error update post', error)
+      alert('更新に失敗しました')
     }
-    await API.graphql(graphqlOperation(updatePost, { input }, this.main.auth.token))
-    await this.listPosts()
   }
 
   async deletePost(postId: string) {
-    const input = {
-      id: postId,
-      _version: this.posts[postId]._version,
+    try {
+      const input = {
+        id: postId,
+        _version: this.posts[postId]._version,
+      }
+      this.main.auth.useAuthTypeCognito()
+      await API.graphql(graphqlOperation(deletePost, { input }, this.main.auth.token))
+      await this.listPosts()
+    } catch (error) {
+      console.log('error delete post', error)
+      alert('削除に失敗しました')
     }
-    await API.graphql(graphqlOperation(deletePost, { input }, this.main.auth.token))
-    await this.listPosts()
   }
 }

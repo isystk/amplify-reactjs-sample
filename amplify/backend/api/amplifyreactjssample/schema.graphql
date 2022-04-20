@@ -16,7 +16,7 @@ type User
 type Post
   @model
   @auth(rules: [
-    {allow: owner, ownerField:"authorId", provider: userPools, operations:[read, create, update, delete]},
+    {allow: owner, ownerField:"authorId", provider: userPools, operations:[create, update, delete]},
     {allow: public, operations:[read]}
   ]) {
   id: ID!

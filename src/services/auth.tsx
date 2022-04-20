@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify'
+import { Amplify, Auth } from 'aws-amplify'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { getUser } from '@/services/graphql/queries'
 import { createUser } from '@/services/graphql/mutations'
@@ -35,6 +35,7 @@ export default class AuthService {
       const user = await Auth.signIn(email, password)
       if (user) {
         console.log('success signing in', user)
+        this.useAuthTypeApiKey()
         const userData = await API.graphql(graphqlOperation(getUser, { userSub: user.username }))
         // @ts-ignore
         const { id, fullName } = userData.data.listUsers.items[0]
@@ -62,6 +63,7 @@ export default class AuthService {
           fullName: name,
           profileImageFileName: '',
         }
+        this.useAuthTypeApiKey()
         await API.graphql(graphqlOperation(createUser, { input }))
         return true
       }
@@ -79,6 +81,7 @@ export default class AuthService {
     if (this.name) return
     const user = await Auth.currentUserInfo()
     if (user) {
+      this.useAuthTypeApiKey()
       const userData = await API.graphql(graphqlOperation(getUser, { userSub: user.username }))
       // @ts-ignore
       const { id, fullName } = userData.data.listUsers.items[0]
@@ -93,5 +96,17 @@ export default class AuthService {
   async getJwtToken() {
     const session = await Auth.currentSession() //現在のセッション情報を取得
     return session.getIdToken().getJwtToken()
+  }
+
+  useAuthTypeCognito() {
+    Amplify.configure({
+      aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
+    })
+  }
+
+  useAuthTypeApiKey() {
+    Amplify.configure({
+      aws_appsync_authenticationType: 'API_KEY',
+    })
   }
 }
