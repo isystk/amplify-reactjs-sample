@@ -14,8 +14,6 @@ const Layout: FC<Props> = ({ children, title }) => {
   const appRoot = useAppRoot()
   const [isMenuOpen, setMenuOpen] = useState(false)
 
-  if (!appRoot) return <></>
-
   return (
     <div className="App">
       <Helmet

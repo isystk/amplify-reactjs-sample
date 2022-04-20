@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Url } from '@/constants/url'
-import Top from '@/pages/Top'
-import PostIndex from '@/pages/post/[id]'
-import SignIn from '@/pages/signin'
-import SignUp from '@/pages/signup'
-import Member from '@/pages/member'
-import NotFound from '@/pages/NotFound'
+const Top = lazy(() => import('@/pages/Top'))
+const PostIndex = lazy(() => import('@/pages/post/[id]'))
+const SignIn = lazy(() => import('@/pages/signin'))
+const SignUp = lazy(() => import('@/pages/signup'))
+const Member = lazy(() => import('@/pages/member'))
+const NotFound = lazy(() => import('@/pages/NotFound'))
 import useAppRoot from '@/stores/useAppRoot'
 import { RouteAuthGuard } from '@/auth/RouteAuthGuard'
 
@@ -26,21 +26,23 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route index element={<Top appRoot={appRoot} />} />
-        <Route path="/post/:postId" element={<PostIndex appRoot={appRoot} />} />
-        <Route path={Url.SignIn} element={<SignIn appRoot={appRoot} />} />
-        <Route path={Url.SignUp} element={<SignUp appRoot={appRoot} />} />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Routes>
+          <Route index element={<Top appRoot={appRoot} />} />
+          <Route path="/post/:postId" element={<PostIndex appRoot={appRoot} />} />
+          <Route path={Url.SignIn} element={<SignIn appRoot={appRoot} />} />
+          <Route path={Url.SignUp} element={<SignUp appRoot={appRoot} />} />
 
-        {/* ★ログインユーザー専用ここから */}
-        <Route
-          path={Url.Member}
-          element={<RouteAuthGuard component={<Member appRoot={appRoot} />} redirect={Url.SignIn} />}
-        />
-        {/* ★ログインユーザー専用ここまで */}
+          {/* ★ログインユーザー専用ここから */}
+          <Route
+            path={Url.Member}
+            element={<RouteAuthGuard component={<Member appRoot={appRoot} />} redirect={Url.SignIn} />}
+          />
+          {/* ★ログインユーザー専用ここまで */}
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

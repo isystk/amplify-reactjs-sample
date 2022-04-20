@@ -26,6 +26,7 @@ import { Link } from 'react-router-dom'
 import { Url } from '@/constants/url'
 import { makeStyles } from '@material-ui/core/styles'
 import Pagination from '@material-ui/lab/Pagination'
+import { flushSync } from 'react-dom'
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -64,12 +65,14 @@ const Index: VFC<Props> = ({ appRoot }) => {
 
   useEffect(() => {
     if (!appRoot.post.posts) return
-    const items = appRoot.post.listMyPosts()
-    setAllItems(items)
-    //ページカウントの計算（今回は3項目/ページなので4ページ）
-    setPageCount(Math.ceil(items.length / displayNum))
-    //表示データを抽出
-    setDisplayedItems(items.slice((page - 1) * displayNum, page * displayNum))
+    flushSync(() => {
+      const items = appRoot.post.listMyPosts()
+      setAllItems(items)
+      //ページカウントの計算（今回は3項目/ページなので4ページ）
+      setPageCount(Math.ceil(items.length / displayNum))
+      //表示データを抽出
+      setDisplayedItems(items.slice((page - 1) * displayNum, page * displayNum))
+    })
   }, [appRoot.post.posts])
 
   // 投稿の削除
