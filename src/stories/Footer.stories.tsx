@@ -1,8 +1,8 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 import { storiesOf } from '@storybook/react'
-import Logo from '@/components/Logo'
+import Footer from '@/components/Footer'
 
-storiesOf('commons/Logo', module)
+storiesOf('commons/Footer', module)
   .addDecorator((getStory) => <MemoryRouter>{getStory()}</MemoryRouter>)
-  .add('default', () => <Logo/>)
+  .add('default', () => <Footer/>)
