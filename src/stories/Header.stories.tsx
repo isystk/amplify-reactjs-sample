@@ -1,25 +1,24 @@
 import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { MemoryRouter } from 'react-router'
+import { storiesOf } from '@storybook/react'
+import MainService from '@/services/main'
+import Header from '@/components/Header'
 
-import { Header } from './Header'
-
-export default {
-  title: 'Example/Header',
-  component: Header,
-  parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
-  },
-} as ComponentMeta<typeof Header>
-
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />
-
-export const LoggedIn = Template.bind({})
-LoggedIn.args = {
-  user: {
-    name: 'Jane Doe',
-  },
-}
-
-export const LoggedOut = Template.bind({})
-LoggedOut.args = {}
+storiesOf('commons/Header', module)
+  .addDecorator((getStory) => <MemoryRouter>{getStory()}</MemoryRouter>)
+  .add('Logout', () => {
+    const appRoot = {
+      auth: {
+        name: '',
+      },
+    } as MainService
+    return <Header isMenuOpen={false} setMenuOpen={() => ({})} appRoot={appRoot} />
+  })
+  .add('Logined', () => {
+    const appRoot = {
+      auth: {
+        name: 'sample',
+      },
+    } as MainService
+    return <Header isMenuOpen={false} setMenuOpen={() => ({})} appRoot={appRoot} />
+  })
