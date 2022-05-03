@@ -8,12 +8,24 @@
     "test": "react-app-rewired test --scripts-version=@next",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js,.tsx,.ts src/",
-    "lintfix": "eslint --fix --ext .jsx,.js,.tsx,.ts src/"
+    "lintfix": "eslint --fix --ext .jsx,.js,.tsx,.ts src/",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "jest": {
@@ -43,6 +55,16 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@reduxjs/toolkit": "^1.8.1",
+    "@storybook/addon-actions": "^6.5.0-beta.1",
+    "@storybook/addon-essentials": "^6.5.0-beta.1",
+    "@storybook/addon-interactions": "^6.5.0-beta.1",
+    "@storybook/addon-links": "^6.5.0-beta.1",
+    "@storybook/builder-webpack5": "^6.5.0-beta.1",
+    "@storybook/manager-webpack5": "^6.5.0-beta.1",
+    "@storybook/node-logger": "^6.5.0-beta.1",
+    "@storybook/preset-create-react-app": "^4.1.0",
+    "@storybook/react": "^6.5.0-beta.1",
+    "@storybook/testing-library": "^0.0.11",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^14.0.3",
@@ -86,5 +108,6 @@
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
-  }
+  },
+  "dependencies": {}
 }
