@@ -164,7 +164,8 @@ const Index: VFC<Props> = ({ appRoot }) => {
                               type="submit"
                               startIcon={<DeleteIcon />}
                               onClick={async () => {
-                                if (confirm('削除します。よろしいですか？')) await onDeleteSubmit(row)
+                                if (confirm('削除します。よろしいですか？'))
+                                  await onDeleteSubmit(row)
                               }}
                             >
                               削除
@@ -188,7 +189,9 @@ const Index: VFC<Props> = ({ appRoot }) => {
                 //ページ移動時にページ番号を更新
                 setPage(index)
                 //ページ移動時に表示データを書き換える
-                setDisplayedItems(allItems.slice((index - 1) * displayNum, index * displayNum))
+                setDisplayedItems(
+                  allItems.slice((index - 1) * displayNum, index * displayNum)
+                )
               }}
             />
           </div>

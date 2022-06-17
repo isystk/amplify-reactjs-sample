@@ -3,7 +3,17 @@ import AddCircleIcon from '@material-ui/icons/AddCircle'
 import ImageFile from '@/components/Input/ImageFile'
 import MainService from '@/services/main'
 import React, { VFC } from 'react'
-import { Button, Grid, Typography, Modal, Paper, TextField, Fade, FormGroup, Container } from '@material-ui/core'
+import {
+  Button,
+  Grid,
+  Typography,
+  Modal,
+  Paper,
+  TextField,
+  Fade,
+  FormGroup,
+  Container,
+} from '@material-ui/core'
 import { Formik, Form } from 'formik'
 import { Post } from '@/services/models'
 import CloseIcon from '@material-ui/icons/Close'
@@ -58,16 +68,27 @@ const PostRegistModal: VFC<Props> = ({ open, onClose, appRoot, post }) => {
       <Container maxWidth="md">
         <Fade in={open}>
           <Paper style={{ marginTop: '25px' }}>
-            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
               {({ values, errors, touched, handleChange, handleBlur }) => (
                 <Form>
                   <Grid container justifyContent="flex-end">
                     <CloseIcon onClick={onClose} />
                   </Grid>
-                  <Grid container spacing={3} style={{ padding: '20px' }} justifyContent="center">
+                  <Grid
+                    container
+                    spacing={3}
+                    style={{ padding: '20px' }}
+                    justifyContent="center"
+                  >
                     <Grid item xs={12} sm={12} md={12}>
                       <FormGroup style={{ margin: 8 }}>
-                        <Typography style={{ marginLeft: 8 }}>タイトル</Typography>
+                        <Typography style={{ marginLeft: 8 }}>
+                          タイトル
+                        </Typography>
                         <TextField
                           fullWidth
                           margin="normal"
@@ -98,9 +119,19 @@ const PostRegistModal: VFC<Props> = ({ open, onClose, appRoot, post }) => {
                           helperText={errors.description}
                         />
                         <ImageFile label="写真" name="photo" />
-                        <Grid container style={{ paddingTop: 30 }} justify="center" direction="row">
+                        <Grid
+                          container
+                          style={{ paddingTop: 30 }}
+                          justify="center"
+                          direction="row"
+                        >
                           <Grid item>
-                            <Button variant="contained" color="secondary" type="submit" startIcon={<AddCircleIcon />}>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              type="submit"
+                              startIcon={<AddCircleIcon />}
+                            >
                               投稿
                             </Button>
                           </Grid>

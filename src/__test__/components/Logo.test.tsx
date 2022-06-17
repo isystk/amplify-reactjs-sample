@@ -7,7 +7,7 @@ test('Logo', () => {
   const component = renderer.create(
     <BrowserRouter>
       <Logo />
-    </BrowserRouter>,
+    </BrowserRouter>
   )
   expect(component).toMatchSnapshot()
 })

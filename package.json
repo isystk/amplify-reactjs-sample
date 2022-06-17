@@ -5,27 +5,23 @@
   "scripts": {
     "start": "react-app-rewired start --scripts-version",
     "build": "react-app-rewired build --scripts-version",
-    "test": "react-app-rewired test --scripts-version=@next",
+    "test": "react-app-rewired test --watchAll=false --scripts-version=@next",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js,.tsx,.ts src/",
     "lintfix": "eslint --fix --ext .jsx,.js,.tsx,.ts src/",
+    "format": "prettier -w 'src/*.{ts,tsx}' && prettier -w 'src/**/*.{ts,tsx}'",
+    "fix": "yarn format && yarn lint",
+    "prepare": "husky install",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
+    "*.{css,less,sass,scss}": [
+      "stylelint --fix"
     ]
   },
   "jest": {
@@ -89,6 +85,8 @@
     "eslint-plugin-react-hooks": "^4.4.0",
     "formik": "^2.2.9",
     "formik-material-ui": "^4.0.0-alpha.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
     "lodash": "^4.17.21",
     "material-ui": "^0.20.2",
     "prettier": "^2.6.2",

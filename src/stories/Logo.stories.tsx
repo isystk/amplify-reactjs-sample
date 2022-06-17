@@ -5,4 +5,4 @@ import Logo from '@/components/Logo'
 
 storiesOf('commons/Logo', module)
   .addDecorator((getStory) => <MemoryRouter>{getStory()}</MemoryRouter>)
-  .add('default', () => <Logo/>)
+  .add('default', () => <Logo />)

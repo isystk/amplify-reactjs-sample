@@ -1,5 +1,13 @@
 import React, { Dispatch, SetStateAction, VFC } from 'react'
-import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import {
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
@@ -41,7 +49,11 @@ const SideMenu: VFC<Props> = ({ isMenuOpen, setMenuOpen }) => {
     ],
   } as Menus
   return (
-    <Drawer anchor="left" open={isMenuOpen} onClose={() => setMenuOpen(!isMenuOpen)}>
+    <Drawer
+      anchor="right"
+      open={isMenuOpen}
+      onClose={() => setMenuOpen(!isMenuOpen)}
+    >
       <div style={{ marginLeft: 'auto' }}>
         <IconButton onClick={() => setMenuOpen(!isMenuOpen)}>
           <ChevronLeftIcon />

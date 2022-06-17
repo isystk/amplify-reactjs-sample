@@ -29,14 +29,22 @@ function App() {
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
           <Route index element={<Top appRoot={appRoot} />} />
-          <Route path="/post/:postId" element={<PostIndex appRoot={appRoot} />} />
+          <Route
+            path="/post/:postId"
+            element={<PostIndex appRoot={appRoot} />}
+          />
           <Route path={Url.SignIn} element={<SignIn appRoot={appRoot} />} />
           <Route path={Url.SignUp} element={<SignUp appRoot={appRoot} />} />
 
           {/* ★ログインユーザー専用ここから */}
           <Route
             path={Url.Member}
-            element={<RouteAuthGuard component={<Member appRoot={appRoot} />} redirect={Url.SignIn} />}
+            element={
+              <RouteAuthGuard
+                component={<Member appRoot={appRoot} />}
+                redirect={Url.SignIn}
+              />
+            }
           />
           {/* ★ログインユーザー専用ここまで */}
 

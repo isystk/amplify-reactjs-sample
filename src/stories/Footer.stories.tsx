@@ -5,4 +5,4 @@ import Footer from '@/components/Footer'
 
 storiesOf('commons/Footer', module)
   .addDecorator((getStory) => <MemoryRouter>{getStory()}</MemoryRouter>)
-  .add('default', () => <Footer/>)
+  .add('default', () => <Footer />)

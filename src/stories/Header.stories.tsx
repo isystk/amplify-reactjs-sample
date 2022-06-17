@@ -12,7 +12,9 @@ storiesOf('commons/Header', module)
         name: '',
       },
     } as MainService
-    return <Header isMenuOpen={false} setMenuOpen={() => ({})} appRoot={appRoot} />
+    return (
+      <Header isMenuOpen={false} setMenuOpen={() => ({})} appRoot={appRoot} />
+    )
   })
   .add('Logined', () => {
     const appRoot = {
@@ -20,5 +22,7 @@ storiesOf('commons/Header', module)
         name: 'sample',
       },
     } as MainService
-    return <Header isMenuOpen={false} setMenuOpen={() => ({})} appRoot={appRoot} />
+    return (
+      <Header isMenuOpen={false} setMenuOpen={() => ({})} appRoot={appRoot} />
+    )
   })

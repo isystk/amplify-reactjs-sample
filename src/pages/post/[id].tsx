@@ -56,7 +56,9 @@ const PostIndex: VFC<Props> = ({ appRoot }) => {
             image={post.photo || NoImage}
             title="Contemplative Reptile"
           />
-          <Typography style={{ marginBottom: '25px' }}>{post.description}</Typography>
+          <Typography style={{ marginBottom: '25px' }}>
+            {post.description}
+          </Typography>
         </Grid>
       </Grid>
     </Layout>

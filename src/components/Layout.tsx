@@ -18,12 +18,25 @@ const Layout: FC<Props> = ({ children, title }) => {
     <div className="App">
       <Helmet
         title={title + ' | amplify-reactjs-sample'}
-        meta={[{ name: 'description', content: 'AWS Amplify の学習用サンプルアプリケーションです。' }]}
+        meta={[
+          {
+            name: 'description',
+            content: 'AWS Amplify の学習用サンプルアプリケーションです。',
+          },
+        ]}
       />
-      <Header isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} appRoot={appRoot} />
+      <Header
+        isMenuOpen={isMenuOpen}
+        setMenuOpen={setMenuOpen}
+        appRoot={appRoot}
+      />
       <div>{children}</div>
       <Footer />
-      <SideMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} appRoot={appRoot} />
+      <SideMenu
+        isMenuOpen={isMenuOpen}
+        setMenuOpen={setMenuOpen}
+        appRoot={appRoot}
+      />
     </div>
   )
 }

@@ -36,7 +36,9 @@ export default class AuthService {
       if (user) {
         console.log('success signing in', user)
         this.useAuthTypeApiKey()
-        const userData = await API.graphql(graphqlOperation(getUser, { userSub: user.username }))
+        const userData = await API.graphql(
+          graphqlOperation(getUser, { userSub: user.username })
+        )
         // @ts-ignore
         const { id, fullName } = userData.data.listUsers.items[0]
         this.id = id
@@ -70,7 +72,9 @@ export default class AuthService {
     } catch (error) {
       console.log('error signup in', error)
       if ((error as string).match(/UsernameExistsException/)) {
-        alert('既に会員登録されています。認証済みでない場合はメールを確認してください。')
+        alert(
+          '既に会員登録されています。認証済みでない場合はメールを確認してください。'
+        )
       }
       return false
     }
@@ -82,7 +86,9 @@ export default class AuthService {
     const user = await Auth.currentUserInfo()
     if (user) {
       this.useAuthTypeApiKey()
-      const userData = await API.graphql(graphqlOperation(getUser, { userSub: user.username }))
+      const userData = await API.graphql(
+        graphqlOperation(getUser, { userSub: user.username })
+      )
       // @ts-ignore
       const { id, fullName } = userData.data.listUsers.items[0]
 

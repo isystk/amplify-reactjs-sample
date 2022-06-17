@@ -1,6 +1,14 @@
 import React, { VFC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core'
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@material-ui/core'
 import { Post } from '@/services/models'
 import NoImage from '@/assets/images/no_image.png'
 import { Link } from 'react-router-dom'
@@ -24,7 +32,11 @@ const PostCard: VFC<Props> = ({ post }) => {
     <Link to={`/post/${post.id}`}>
       <Card>
         <CardActionArea>
-          <CardMedia className={classes.media} image={post.photo || NoImage} title="Contemplative Reptile" />
+          <CardMedia
+            className={classes.media}
+            image={post.photo || NoImage}
+            title="Contemplative Reptile"
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {post.title}

@@ -72,7 +72,11 @@ export const ImageFileInput: VFC<Props> = ({ label, name, ...rest }) => {
               ({ form }) => {
                 const { values } = form
                 return (
-                  <CardMedia className={classes.media} image={values.photo || NoImage} title="Contemplative Reptile" />
+                  <CardMedia
+                    className={classes.media}
+                    image={values.photo || NoImage}
+                    title="Contemplative Reptile"
+                  />
                 )
               }
             }

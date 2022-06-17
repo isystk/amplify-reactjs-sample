@@ -72,8 +72,19 @@ const Index: VFC<Props> = ({ appRoot }) => {
         <Grid container justifyContent="center" spacing={1}>
           <Grid item xs={12} md={6}>
             <Card>
-              <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-                {({ isValid, values, errors, touched, handleChange, handleBlur }) => (
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
+              >
+                {({
+                  isValid,
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleBlur,
+                }) => (
                   <Form>
                     <CardContent>
                       <Grid item container spacing={3} justifyContent="center">
@@ -126,7 +137,13 @@ const Index: VFC<Props> = ({ appRoot }) => {
                     </CardContent>
                     <CardActions>
                       <Grid item xs={12} sm={12} md={12}>
-                        <Button color="primary" disabled={!isValid} fullWidth type="submit" variant="contained">
+                        <Button
+                          color="primary"
+                          disabled={!isValid}
+                          fullWidth
+                          type="submit"
+                          variant="contained"
+                        >
                           会員登録する
                         </Button>
                       </Grid>

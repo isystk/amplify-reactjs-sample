@@ -17,7 +17,9 @@ Amplify.configure(awsconfig)
 
 // 開発環境の場合は、redux-devtools-extension を利用できるようにする
 const enhancer =
-  process.env.NODE_ENV === 'development' ? composeWithDevTools(applyMiddleware(thunk)) : applyMiddleware(thunk)
+  process.env.NODE_ENV === 'development'
+    ? composeWithDevTools(applyMiddleware(thunk))
+    : applyMiddleware(thunk)
 const store = createStore(reducers, enhancer)
 
 const container = document.getElementById('root')
@@ -28,7 +30,7 @@ if (container) {
       <Provider store={store}>
         <App />
       </Provider>
-    </MuiThemeProvider>,
+    </MuiThemeProvider>
   )
 }
 

@@ -1,7 +1,11 @@
 import MainService from '@/services/main'
 import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { getPost, listPosts } from '@/services/graphql/queries'
-import { createPost, updatePost, deletePost } from '@/services/graphql/mutations'
+import {
+  createPost,
+  updatePost,
+  deletePost,
+} from '@/services/graphql/mutations'
 import { Post } from '@/services/models'
 import * as _ from 'lodash'
 
@@ -21,9 +25,14 @@ export default class PostService {
 
   async listPosts() {
     this.main.auth.useAuthTypeApiKey()
-    const postData = (await API.graphql(graphqlOperation(listPosts))) as GraphQLResult
-    // @ts-ignore
-    const filterPosts = _.filter(postData.data.listPosts.items, (post) => !post._deleted)
+    const postData = (await API.graphql(
+      graphqlOperation(listPosts)
+    )) as GraphQLResult
+    const filterPosts = _.filter(
+      // @ts-ignore
+      postData.data.listPosts.items,
+      (post) => !post._deleted
+    )
     this.posts = _.mapKeys(filterPosts, 'id')
     await this.main.setAppRoot()
   }
@@ -48,7 +57,9 @@ export default class PostService {
         userID: this.main.auth.id,
       }
       this.main.auth.useAuthTypeCognito()
-      await API.graphql(graphqlOperation(createPost, { input }, this.main.auth.token))
+      await API.graphql(
+        graphqlOperation(createPost, { input }, this.main.auth.token)
+      )
       await this.listPosts()
     } catch (error) {
       console.log('error create post', error)
@@ -64,7 +75,9 @@ export default class PostService {
         _version: this.posts[post.id]._version,
       }
       this.main.auth.useAuthTypeCognito()
-      await API.graphql(graphqlOperation(updatePost, { input }, this.main.auth.token))
+      await API.graphql(
+        graphqlOperation(updatePost, { input }, this.main.auth.token)
+      )
       await this.listPosts()
     } catch (error) {
       console.log('error update post', error)
@@ -79,7 +92,9 @@ export default class PostService {
         _version: this.posts[postId]._version,
       }
       this.main.auth.useAuthTypeCognito()
-      await API.graphql(graphqlOperation(deletePost, { input }, this.main.auth.token))
+      await API.graphql(
+        graphqlOperation(deletePost, { input }, this.main.auth.token)
+      )
       await this.listPosts()
     } catch (error) {
       console.log('error delete post', error)
